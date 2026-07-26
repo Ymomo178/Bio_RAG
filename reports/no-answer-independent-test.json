@@ -1,0 +1,151 @@
+{
+  "evaluation_type": "no_answer_rejection",
+  "dataset": "..\\data\\evaluation\\no-answer-test.jsonl",
+  "question_count": 12,
+  "score_threshold": 0.85,
+  "top_k": 1,
+  "false_accept_count": 2,
+  "false_accept_rate": 0.1667,
+  "rejection_count": 10,
+  "rejection_rate": 0.8333,
+  "metadata": {
+    "retrieval_mode": "hybrid_rerank",
+    "embedding_model": "BAAI/bge-m3",
+    "embedding_device": "cuda:0",
+    "embedding_precision": "float16",
+    "reranker_model": "C:\\Users\\16061\\.cache\\modelscope\\models\\BAAI--bge-reranker-v2-m3\\snapshots\\master",
+    "reranker_device": "cuda:0",
+    "reranker_precision": "float16",
+    "token_statistics": {
+      "minimum": 16,
+      "median": 273,
+      "p90": 403,
+      "p95": 446,
+      "maximum": 1020,
+      "average": 265.76,
+      "over_model_limit": 0
+    }
+  },
+  "details": [
+    {
+      "question_id": "no-answer-test-001",
+      "question": "limma 的 voomWithQualityWeights 默认如何估计样本权重？",
+      "category": "缺失工具",
+      "difficulty": "hard",
+      "confusing_source_id": null,
+      "top_score": 0.035614013671875,
+      "accepted_as_evidence": false,
+      "top_chunk_id": "edger-user-guide-ae2fbb42c11503e4"
+    },
+    {
+      "question_id": "no-answer-test-002",
+      "question": "GATK Mutect2 如何设置肿瘤纯度参数？",
+      "category": "缺失工具",
+      "difficulty": "hard",
+      "confusing_source_id": null,
+      "top_score": 0.0021152496337890625,
+      "accepted_as_evidence": false,
+      "top_chunk_id": "nfcore-rnaseq-docs-d14d53b6eed7d780"
+    },
+    {
+      "question_id": "no-answer-test-003",
+      "question": "HISAT2 的 --dta-cufflinks 和 --dta 有什么区别？",
+      "category": "缺失工具",
+      "difficulty": "hard",
+      "confusing_source_id": null,
+      "top_score": 0.0416259765625,
+      "accepted_as_evidence": false,
+      "top_chunk_id": "nfcore-rnaseq-docs-3273dd18bc759280"
+    },
+    {
+      "question_id": "no-answer-test-004",
+      "question": "FastQC 如何将 reads 组装为 transcript 并计算 N50？",
+      "category": "超出工具能力",
+      "difficulty": "easy",
+      "confusing_source_id": "fastqc-help",
+      "top_score": 0.51220703125,
+      "accepted_as_evidence": false,
+      "top_chunk_id": "salmon-docs-2a51694dd794dd03"
+    },
+    {
+      "question_id": "no-answer-test-005",
+      "question": "edgeR 如何从 CRAM 文件直接完成序列比对？",
+      "category": "流程边界",
+      "difficulty": "medium",
+      "confusing_source_id": "edger-user-guide",
+      "top_score": 0.20751953125,
+      "accepted_as_evidence": false,
+      "top_chunk_id": "edger-user-guide-354284fb602e7288"
+    },
+    {
+      "question_id": "no-answer-test-006",
+      "question": "MultiQC 使用哪个神经网络模型预测剪接位点？",
+      "category": "跨领域干扰",
+      "difficulty": "easy",
+      "confusing_source_id": "multiqc-docs",
+      "top_score": 0.46875,
+      "accepted_as_evidence": false,
+      "top_chunk_id": "nfcore-rnaseq-docs-153336cf669e05fd"
+    },
+    {
+      "question_id": "no-answer-test-007",
+      "question": "Cutadapt 如何计算每个转录本的 TPM？",
+      "category": "流程边界",
+      "difficulty": "easy",
+      "confusing_source_id": "cutadapt-docs",
+      "top_score": 0.29443359375,
+      "accepted_as_evidence": false,
+      "top_chunk_id": "salmon-docs-2a51694dd794dd03"
+    },
+    {
+      "question_id": "no-answer-test-008",
+      "question": "Salmon 能否根据蛋白质 FASTA 预测亚细胞定位？",
+      "category": "跨领域干扰",
+      "difficulty": "easy",
+      "confusing_source_id": "salmon-docs",
+      "top_score": 0.310791015625,
+      "accepted_as_evidence": false,
+      "top_chunk_id": "nfcore-rnaseq-docs-449c33babcfb1225"
+    },
+    {
+      "question_id": "no-answer-test-009",
+      "question": "STAR 的哪个参数可以完成拷贝数变异分段？",
+      "category": "跨工具参数",
+      "difficulty": "medium",
+      "confusing_source_id": "star-manual",
+      "top_score": 0.66943359375,
+      "accepted_as_evidence": false,
+      "top_chunk_id": "nfcore-rnaseq-docs-59860864b8f0821a"
+    },
+    {
+      "question_id": "no-answer-test-010",
+      "question": "DESeq2 如何在没有任何 count matrix 的情况下直接读取显微镜图像做差异分析？",
+      "category": "输入类型错误",
+      "difficulty": "medium",
+      "confusing_source_id": "deseq2-vignette",
+      "top_score": 0.86767578125,
+      "accepted_as_evidence": true,
+      "top_chunk_id": "nfcore-rnaseq-docs-b7fc11f0f90b3165"
+    },
+    {
+      "question_id": "no-answer-test-011",
+      "question": "nf-core/rnaseq 如何生成冷冻电镜三维密度图？",
+      "category": "跨领域干扰",
+      "difficulty": "easy",
+      "confusing_source_id": "nfcore-rnaseq-docs",
+      "top_score": 0.88232421875,
+      "accepted_as_evidence": true,
+      "top_chunk_id": "nfcore-rnaseq-docs-ec651cbd9fe5ebb4"
+    },
+    {
+      "question_id": "no-answer-test-012",
+      "question": "当前资料中 Bowtie2 --very-sensitive-local 的完整预设参数是什么？",
+      "category": "缺失工具",
+      "difficulty": "hard",
+      "confusing_source_id": null,
+      "top_score": 0.5361328125,
+      "accepted_as_evidence": false,
+      "top_chunk_id": "nfcore-rnaseq-docs-d14d53b6eed7d780"
+    }
+  ]
+}

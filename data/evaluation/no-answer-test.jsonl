@@ -1,0 +1,12 @@
+{"question_id":"no-answer-test-001","question":"limma 的 voomWithQualityWeights 默认如何估计样本权重？","expected_behavior":"拒答：当前知识库没有 limma 官方函数资料。","category":"缺失工具","difficulty":"hard","confusing_source_id":null}
+{"question_id":"no-answer-test-002","question":"GATK Mutect2 如何设置肿瘤纯度参数？","expected_behavior":"拒答：当前知识库不包含 GATK Mutect2 文档。","category":"缺失工具","difficulty":"hard","confusing_source_id":null}
+{"question_id":"no-answer-test-003","question":"HISAT2 的 --dta-cufflinks 和 --dta 有什么区别？","expected_behavior":"拒答：当前知识库没有 HISAT2 参数手册。","category":"缺失工具","difficulty":"hard","confusing_source_id":null}
+{"question_id":"no-answer-test-004","question":"FastQC 如何将 reads 组装为 transcript 并计算 N50？","expected_behavior":"拒答：FastQC 不进行转录本组装。","category":"超出工具能力","difficulty":"easy","confusing_source_id":"fastqc-help"}
+{"question_id":"no-answer-test-005","question":"edgeR 如何从 CRAM 文件直接完成序列比对？","expected_behavior":"拒答：edgeR 不负责 reads 比对。","category":"流程边界","difficulty":"medium","confusing_source_id":"edger-user-guide"}
+{"question_id":"no-answer-test-006","question":"MultiQC 使用哪个神经网络模型预测剪接位点？","expected_behavior":"拒答：MultiQC 不预测剪接位点。","category":"跨领域干扰","difficulty":"easy","confusing_source_id":"multiqc-docs"}
+{"question_id":"no-answer-test-007","question":"Cutadapt 如何计算每个转录本的 TPM？","expected_behavior":"拒答：Cutadapt 不执行转录本丰度定量。","category":"流程边界","difficulty":"easy","confusing_source_id":"cutadapt-docs"}
+{"question_id":"no-answer-test-008","question":"Salmon 能否根据蛋白质 FASTA 预测亚细胞定位？","expected_behavior":"拒答：Salmon 不提供蛋白质定位预测。","category":"跨领域干扰","difficulty":"easy","confusing_source_id":"salmon-docs"}
+{"question_id":"no-answer-test-009","question":"STAR 的哪个参数可以完成拷贝数变异分段？","expected_behavior":"拒答：STAR 不进行 CNV segmentation。","category":"跨工具参数","difficulty":"medium","confusing_source_id":"star-manual"}
+{"question_id":"no-answer-test-010","question":"DESeq2 如何在没有任何 count matrix 的情况下直接读取显微镜图像做差异分析？","expected_behavior":"拒答：DESeq2 不能用显微镜图像替代计数数据。","category":"输入类型错误","difficulty":"medium","confusing_source_id":"deseq2-vignette"}
+{"question_id":"no-answer-test-011","question":"nf-core/rnaseq 如何生成冷冻电镜三维密度图？","expected_behavior":"拒答：RNA-seq 流程不处理冷冻电镜数据。","category":"跨领域干扰","difficulty":"easy","confusing_source_id":"nfcore-rnaseq-docs"}
+{"question_id":"no-answer-test-012","question":"当前资料中 Bowtie2 --very-sensitive-local 的完整预设参数是什么？","expected_behavior":"拒答：当前知识库没有 Bowtie2 官方参数手册，不能可靠给出完整预设。","category":"缺失工具","difficulty":"hard","confusing_source_id":null}

@@ -1,0 +1,18 @@
+{"question_id":"no-answer-dev-001","question":"DESeq2 如何调用细胞峰值检测算法识别 ATAC-seq peaks？","expected_behavior":"拒答：当前知识库没有 DESeq2 进行 ATAC-seq peak calling 的依据。","category":"超出工具能力","difficulty":"medium","confusing_source_id":"deseq2-vignette"}
+{"question_id":"no-answer-dev-002","question":"edgeR 如何预测蛋白质三维结构？","expected_behavior":"拒答：edgeR 文档不包含蛋白质结构预测能力。","category":"跨领域干扰","difficulty":"easy","confusing_source_id":"edger-user-guide"}
+{"question_id":"no-answer-dev-003","question":"STAR 用哪个参数执行 GATK 风格的变异质量重校准？","expected_behavior":"拒答：STAR 文档没有 GATK BQSR 操作。","category":"跨工具参数","difficulty":"hard","confusing_source_id":"star-manual"}
+{"question_id":"no-answer-dev-004","question":"FastQC 如何直接剪切检测到的 adapter 序列并输出 clean FASTQ？","expected_behavior":"拒答：FastQC 负责质量检查，不负责实际 adapter trimming。","category":"超出工具能力","difficulty":"medium","confusing_source_id":"fastqc-help"}
+{"question_id":"no-answer-dev-005","question":"MultiQC 如何把原始 reads 比对到参考基因组？","expected_behavior":"拒答：MultiQC 汇总报告，不执行序列比对。","category":"超出工具能力","difficulty":"easy","confusing_source_id":"multiqc-docs"}
+{"question_id":"no-answer-dev-006","question":"Cutadapt 如何完成从头基因组组装并输出 contigs？","expected_behavior":"拒答：Cutadapt 不提供 de novo assembly。","category":"超出工具能力","difficulty":"easy","confusing_source_id":"cutadapt-docs"}
+{"question_id":"no-answer-dev-007","question":"Salmon 使用哪种统计检验直接给出差异表达基因的校正 p 值？","expected_behavior":"拒答：Salmon 负责表达定量，不直接执行差异表达检验。","category":"流程边界","difficulty":"medium","confusing_source_id":"salmon-docs"}
+{"question_id":"no-answer-dev-008","question":"nf-core/rnaseq 如何分析质谱蛋白组原始文件？","expected_behavior":"拒答：当前资料是 RNA-seq 流程，不是蛋白组流程。","category":"跨领域干扰","difficulty":"easy","confusing_source_id":"nfcore-rnaseq-docs"}
+{"question_id":"no-answer-dev-009","question":"当前知识库给出的 Cell Ranger 细胞过滤默认阈值是多少？","expected_behavior":"拒答：当前知识库没有 Cell Ranger 官方资料。","category":"缺失工具","difficulty":"medium","confusing_source_id":null}
+{"question_id":"no-answer-dev-010","question":"BWA-MEM2 的 -K 参数默认值是多少？","expected_behavior":"拒答：当前知识库没有 BWA-MEM2 参数文档。","category":"缺失工具","difficulty":"hard","confusing_source_id":null}
+{"question_id":"no-answer-dev-011","question":"AlphaFold 3 如何设置 ligand CCD code？","expected_behavior":"拒答：当前知识库不包含 AlphaFold 3 文档。","category":"跨领域干扰","difficulty":"hard","confusing_source_id":null}
+{"question_id":"no-answer-dev-012","question":"Seurat 的 FindClusters 默认 resolution 是多少？","expected_behavior":"拒答：当前知识库没有 Seurat 函数文档。","category":"缺失工具","difficulty":"medium","confusing_source_id":null}
+{"question_id":"no-answer-dev-013","question":"DESeq2 能否根据 FASTQ 自动完成 reads 比对？具体使用哪个 aligner？","expected_behavior":"拒答：DESeq2 接收计数数据，不负责从 FASTQ 进行比对。","category":"流程边界","difficulty":"medium","confusing_source_id":"deseq2-manual"}
+{"question_id":"no-answer-dev-014","question":"FastQC 的命令如何修复低质量碱基而不是只报告问题？","expected_behavior":"拒答：FastQC 不会修改或修复 reads。","category":"超出工具能力","difficulty":"medium","confusing_source_id":"fastqc-help"}
+{"question_id":"no-answer-dev-015","question":"MultiQC 能否替代 DESeq2 计算 log2 fold change？","expected_behavior":"拒答：MultiQC 不执行差异表达统计。","category":"流程边界","difficulty":"easy","confusing_source_id":"multiqc-docs"}
+{"question_id":"no-answer-dev-016","question":"STAR 如何根据 BAM 直接计算蛋白质丰度？","expected_behavior":"拒答：STAR 不进行蛋白质定量。","category":"跨领域干扰","difficulty":"easy","confusing_source_id":"star-manual"}
+{"question_id":"no-answer-dev-017","question":"Cutadapt 可以根据参考基因组调用 SNP 吗？使用哪个参数？","expected_behavior":"拒答：Cutadapt 不提供变异检测。","category":"跨工具参数","difficulty":"medium","confusing_source_id":"cutadapt-docs"}
+{"question_id":"no-answer-dev-018","question":"Salmon 如何输出每个基因的显著性 p 值和 FDR？","expected_behavior":"拒答：Salmon 输出丰度估计，不直接输出差异显著性。","category":"流程边界","difficulty":"medium","confusing_source_id":"salmon-docs"}

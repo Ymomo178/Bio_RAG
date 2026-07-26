@@ -1,0 +1,50 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Java
+target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Frontend
+node_modules/
+dist/
+*.tsbuildinfo
+
+# IDE and operating system
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Runtime data
+uploads/
+artifacts/
+logs/
+.tmp-ui-qa/
+*.log
+data/raw/
+data/private/
+data/normalized/
+data/chunks/
+data/indexes/
+
+# Models and large vector indexes
+/models/
+*.bin
+*.safetensors
+*.index

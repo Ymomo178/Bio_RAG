@@ -1,0 +1,12 @@
+{
+  "development_question_count": 90,
+  "test_question_count": 27,
+  "duplicate_question_ids": [],
+  "duplicate_question_texts": [],
+  "shared_relevant_chunk_ids": [],
+  "unresolved_test_question_ids": [],
+  "no_answer_development_count": 18,
+  "no_answer_test_count": 12,
+  "duplicate_no_answer_texts": [],
+  "isolated": true
+}

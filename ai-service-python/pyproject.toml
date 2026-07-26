@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bio-rag-ai-service"
+version = "0.1.0"
+description = "Bio-RAG 的文档处理与检索服务"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.12,<5",
+    "docutils>=0.21,<1",
+    "markdownify>=0.13,<2",
+    "PyMuPDF>=1.26,<2",
+    "pypdf>=6,<7",
+    "python-docx>=1.1,<2",
+    "PyYAML>=6,<7",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8,<10",
+]
+embedding = [
+    "numpy>=2,<3",
+    "rank-bm25>=0.2.2,<1",
+    "sentence-transformers>=5,<6",
+]
+model-download = [
+    "modelscope>=1.38,<2",
+]
+service = [
+    "fastapi>=0.115,<1",
+    "openai>=1.60,<3",
+    "pgvector>=0.3,<1",
+    "psycopg[binary]>=3.2,<4",
+    "pydantic>=2.10,<3",
+    "python-dotenv>=1.0,<2",
+    "uvicorn[standard]>=0.34,<1",
+]
+
+[project.scripts]
+biorag-normalize = "biorag.ingestion.cli:main"
+biorag-chunk = "biorag.ingestion.chunk_cli:main"
+biorag-eval-validate = "biorag.evaluation.cli:main"
+biorag-eval-isolation = "biorag.evaluation.isolation_cli:main"
+biorag-dense-eval = "biorag.evaluation.dense_cli:main"
+biorag-hybrid-eval = "biorag.evaluation.hybrid_cli:main"
+biorag-no-answer-eval = "biorag.evaluation.no_answer_cli:main"
+biorag-index-to-pgvector = "biorag.retrieval.db_cli:main"
+biorag-api = "biorag.api:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

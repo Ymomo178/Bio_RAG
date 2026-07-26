@@ -1,0 +1,2908 @@
+{
+  "generated_at": "2026-07-24T14:38:53.544586+00:00",
+  "retrieval_mode": "hybrid_rerank",
+  "embedding_model": "BAAI/bge-m3",
+  "embedding_device": "cuda:0",
+  "embedding_precision": "float16",
+  "keyword_model": "BM25Okapi",
+  "fusion": "RRF",
+  "reranker_model": "BAAI/bge-reranker-v2-m3",
+  "reranker_source": "C:\\Users\\16061\\.cache\\modelscope\\models\\BAAI--bge-reranker-v2-m3\\snapshots\\master",
+  "reranker_device": "cuda:0",
+  "reranker_precision": "float16",
+  "config": {
+    "dense_candidate_count": 100,
+    "keyword_candidate_count": 100,
+    "rerank_candidate_count": 100,
+    "rrf_k": 60
+  },
+  "token_statistics": {
+    "minimum": 16,
+    "median": 273,
+    "p90": 403,
+    "p95": 446,
+    "maximum": 1020,
+    "average": 265.76,
+    "over_model_limit": 0
+  },
+  "question_count": 27,
+  "evaluation_standard": {
+    "metrics": "命中任一经过人工核验、能够独立支持答案的证据块",
+    "canonical_metrics": "仅命中每题最初指定的官方原文块，用于保持历史对比"
+  },
+  "metrics": {
+    "hit_at_1": 0.8519,
+    "hit_at_3": 0.9259,
+    "hit_at_5": 0.963,
+    "hit_at_10": 1.0,
+    "mrr_at_10": 0.9043
+  },
+  "canonical_metrics": {
+    "hit_at_1": 0.8519,
+    "hit_at_3": 0.9259,
+    "hit_at_5": 0.963,
+    "hit_at_10": 1.0,
+    "mrr_at_10": 0.9043
+  },
+  "source_hit_at_5": {
+    "cutadapt-docs": 0.6667,
+    "deseq2-manual": 1.0,
+    "deseq2-vignette": 1.0,
+    "edger-user-guide": 1.0,
+    "fastqc-help": 1.0,
+    "multiqc-docs": 1.0,
+    "nfcore-rnaseq-docs": 1.0,
+    "salmon-docs": 1.0,
+    "star-manual": 1.0
+  },
+  "canonical_source_hit_at_5": {
+    "cutadapt-docs": 0.6667,
+    "deseq2-manual": 1.0,
+    "deseq2-vignette": 1.0,
+    "edger-user-guide": 1.0,
+    "fastqc-help": 1.0,
+    "multiqc-docs": 1.0,
+    "nfcore-rnaseq-docs": 1.0,
+    "salmon-docs": 1.0,
+    "star-manual": 1.0
+  },
+  "details": [
+    {
+      "question_id": "test-deseq2-manual-001",
+      "question": "DESeq2 的 estimateSizeFactors 支持哪三种 size factor 估计类型？",
+      "source_id": "deseq2-manual",
+      "first_relevant_rank": 2,
+      "first_canonical_rank": 2,
+      "canonical_chunk_ids": [
+        "deseq2-manual-1f01df856ba5ef80"
+      ],
+      "relevant_chunk_ids": [
+        "deseq2-manual-1f01df856ba5ef80"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "deseq2-vignette-89dfbee9a0bc7ea2",
+          "score": 0.982422,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Theory behind DESeq2 > The DESeq2 model",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "deseq2-manual-1f01df856ba5ef80",
+          "score": 0.945312,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 23
+        },
+        {
+          "rank": 3,
+          "chunk_id": "deseq2-manual-cb19a90384fba756",
+          "score": 0.923828,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 7
+        },
+        {
+          "rank": 4,
+          "chunk_id": "deseq2-manual-77666c772060ded1",
+          "score": 0.912598,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 25
+        },
+        {
+          "rank": 5,
+          "chunk_id": "deseq2-manual-2878388e53e922de",
+          "score": 0.840332,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 24
+        },
+        {
+          "rank": 6,
+          "chunk_id": "deseq2-manual-628dfda94d64d010",
+          "score": 0.834473,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 2
+        },
+        {
+          "rank": 7,
+          "chunk_id": "deseq2-manual-622aed26d55b9fdb",
+          "score": 0.81543,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 24
+        },
+        {
+          "rank": 8,
+          "chunk_id": "deseq2-manual-4553c69dfe95f69f",
+          "score": 0.781738,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 8
+        },
+        {
+          "rank": 9,
+          "chunk_id": "deseq2-manual-cc5cedf0396df186",
+          "score": 0.776855,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 23
+        },
+        {
+          "rank": 10,
+          "chunk_id": "deseq2-manual-dc174d5268d8046b",
+          "score": 0.774902,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 22
+        }
+      ]
+    },
+    {
+      "question_id": "test-deseq2-manual-002",
+      "question": "DESeq2 的 plotPCA 默认选择多少个高方差基因计算主成分？",
+      "source_id": "deseq2-manual",
+      "first_relevant_rank": 2,
+      "first_canonical_rank": 2,
+      "canonical_chunk_ids": [
+        "deseq2-manual-da9a9d239fd0466d"
+      ],
+      "relevant_chunk_ids": [
+        "deseq2-manual-da9a9d239fd0466d"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "deseq2-manual-43fe3d8840c0280d",
+          "score": 0.739258,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 2
+        },
+        {
+          "rank": 2,
+          "chunk_id": "deseq2-manual-da9a9d239fd0466d",
+          "score": 0.679688,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 43
+        },
+        {
+          "rank": 3,
+          "chunk_id": "nfcore-rnaseq-docs-1cfe87396d3e299e",
+          "score": 0.674805,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Quality control > DESeq2",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "deseq2-manual-61a51c0ff64265e7",
+          "score": 0.669922,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 39
+        },
+        {
+          "rank": 5,
+          "chunk_id": "deseq2-manual-628dfda94d64d010",
+          "score": 0.573242,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 2
+        },
+        {
+          "rank": 6,
+          "chunk_id": "nfcore-rnaseq-docs-4f822238ed6c9603",
+          "score": 0.520996,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage/differential_expression_analysis/de_rstudio.md",
+          "section": "Differential Analysis with DESeq2 > Differential Expression Analysis",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "deseq2-vignette-16c29f07af1cb23b",
+          "score": 0.50293,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Data transformations and visualization > Data quality assessment by sample clustering and visualization > Principal component plot of the samples",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "deseq2-manual-6022e598ddc81537",
+          "score": 0.488281,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 2
+        },
+        {
+          "rank": 9,
+          "chunk_id": "deseq2-manual-a0317e53e7f8ef25",
+          "score": 0.436768,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 63
+        },
+        {
+          "rank": 10,
+          "chunk_id": "nfcore-rnaseq-docs-4ddc8b793f5ca3e7",
+          "score": 0.428955,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Quality control > DESeq2",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-deseq2-manual-003",
+      "question": "DESeq2 默认在至少有多少个重复样本时替换 Cook 距离极端的离群计数？",
+      "source_id": "deseq2-manual",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "deseq2-manual-ebda05cd2165cb64"
+      ],
+      "relevant_chunk_ids": [
+        "deseq2-manual-ebda05cd2165cb64"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "deseq2-manual-ebda05cd2165cb64",
+          "score": 0.989258,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 9
+        },
+        {
+          "rank": 2,
+          "chunk_id": "deseq2-vignette-bb9d6e41b2ab1150",
+          "score": 0.986816,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Variations to the standard workflow > Approach to count outliers",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "deseq2-manual-442b2dc4950939ae",
+          "score": 0.961426,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 46
+        },
+        {
+          "rank": 4,
+          "chunk_id": "deseq2-manual-7267963b4a0237fc",
+          "score": 0.916016,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 46
+        },
+        {
+          "rank": 5,
+          "chunk_id": "deseq2-vignette-0ef929828b7167ae",
+          "score": 0.881348,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Variations to the standard workflow > Approach to count outliers",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "deseq2-manual-7fa62b23adbbe69f",
+          "score": 0.851562,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 46
+        },
+        {
+          "rank": 7,
+          "chunk_id": "deseq2-manual-5fbeca5449b8a2b1",
+          "score": 0.848633,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 45
+        },
+        {
+          "rank": 8,
+          "chunk_id": "deseq2-vignette-e26eb819e69588b3",
+          "score": 0.785156,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Variations to the standard workflow > Approach to count outliers",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "deseq2-manual-bddd1bca94ae5f3b",
+          "score": 0.750977,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 8
+        },
+        {
+          "rank": 10,
+          "chunk_id": "deseq2-manual-fcf0d2edd0924a5f",
+          "score": 0.692871,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 49
+        }
+      ]
+    },
+    {
+      "question_id": "test-deseq2-vignette-001",
+      "question": "DESeq2 使用 fitType=glmGamPoi 时对检验类型和 reduced design 有什么要求？",
+      "source_id": "deseq2-vignette",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "deseq2-vignette-7b65dc71a1b987af"
+      ],
+      "relevant_chunk_ids": [
+        "deseq2-vignette-7b65dc71a1b987af"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "deseq2-vignette-7b65dc71a1b987af",
+          "score": 0.995117,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Standard workflow > Differential expression analysis > Speed-up and parallelization thoughts",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "deseq2-vignette-c814d4e70d7ee514",
+          "score": 0.940918,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Variations to the standard workflow > Recommendations for single-cell analysis",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "deseq2-manual-15bb4d7d793f71b5",
+          "score": 0.911133,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 7
+        },
+        {
+          "rank": 4,
+          "chunk_id": "deseq2-manual-4553c69dfe95f69f",
+          "score": 0.911133,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 8
+        },
+        {
+          "rank": 5,
+          "chunk_id": "deseq2-manual-bddd1bca94ae5f3b",
+          "score": 0.870117,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 8
+        },
+        {
+          "rank": 6,
+          "chunk_id": "deseq2-manual-09f29ed5f0a445d8",
+          "score": 0.847168,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 33
+        },
+        {
+          "rank": 7,
+          "chunk_id": "deseq2-manual-df131b41bc9e4cae",
+          "score": 0.836426,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 18
+        },
+        {
+          "rank": 8,
+          "chunk_id": "deseq2-manual-ed08242c5e8ee702",
+          "score": 0.835938,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 19
+        },
+        {
+          "rank": 9,
+          "chunk_id": "deseq2-manual-6c826e3b4747ddff",
+          "score": 0.834961,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 10
+        },
+        {
+          "rank": 10,
+          "chunk_id": "deseq2-manual-4b5d619cbb31f35f",
+          "score": 0.821289,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 21
+        }
+      ]
+    },
+    {
+      "question_id": "test-deseq2-vignette-002",
+      "question": "DESeq2 如何用 BiocParallel 将计算拆分到 4 个核心？",
+      "source_id": "deseq2-vignette",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "deseq2-vignette-241c6472cf7acbf8"
+      ],
+      "relevant_chunk_ids": [
+        "deseq2-vignette-241c6472cf7acbf8"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "deseq2-vignette-241c6472cf7acbf8",
+          "score": 0.989746,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Standard workflow > Differential expression analysis > Speed-up and parallelization thoughts",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "deseq2-manual-6022e598ddc81537",
+          "score": 0.651855,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 2
+        },
+        {
+          "rank": 3,
+          "chunk_id": "deseq2-manual-9b97162a5f0bbb6a",
+          "score": 0.632324,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 30
+        },
+        {
+          "rank": 4,
+          "chunk_id": "deseq2-manual-64eae2be032beb55",
+          "score": 0.589355,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 27
+        },
+        {
+          "rank": 5,
+          "chunk_id": "deseq2-manual-661f50e77566a503",
+          "score": 0.582031,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 8
+        },
+        {
+          "rank": 6,
+          "chunk_id": "deseq2-manual-c0e48f6d19b04cb9",
+          "score": 0.511719,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 49
+        },
+        {
+          "rank": 7,
+          "chunk_id": "deseq2-manual-2abc0788b9a2a830",
+          "score": 0.45752,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 1
+        },
+        {
+          "rank": 8,
+          "chunk_id": "deseq2-manual-cb19a90384fba756",
+          "score": 0.434082,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 7
+        },
+        {
+          "rank": 9,
+          "chunk_id": "deseq2-manual-4ce713bdb4ca55e3",
+          "score": 0.432617,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 3
+        },
+        {
+          "rank": 10,
+          "chunk_id": "deseq2-manual-4dc21e1bb44a74d8",
+          "score": 0.396729,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 3
+        }
+      ]
+    },
+    {
+      "question_id": "test-deseq2-vignette-003",
+      "question": "DESeq2 教程中哪个 Bioconductor 包实现 Independent Hypothesis Weighting？",
+      "source_id": "deseq2-vignette",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "deseq2-vignette-cf72ed2467926f60"
+      ],
+      "relevant_chunk_ids": [
+        "deseq2-vignette-cf72ed2467926f60"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "deseq2-vignette-cf72ed2467926f60",
+          "score": 0.999023,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Standard workflow > Differential expression analysis > Independent hypothesis weighting",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "deseq2-vignette-3c5daa833f7a85e2",
+          "score": 0.969727,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Standard workflow > Differential expression analysis > Independent hypothesis weighting",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "deseq2-vignette-c4154241f875ce5c",
+          "score": 0.927246,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Variations to the standard workflow > Independent filtering of results",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "deseq2-vignette-d7b7811fcbe82128",
+          "score": 0.868164,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Theory behind DESeq2 > Methods changes since the 2014 DESeq2 paper",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "nfcore-rnaseq-docs-deff67ab323cb8d6",
+          "score": 0.67627,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage/differential_expression_analysis/theory.md",
+          "section": "RNAseq Analysis > Differential expression (DE) analysis with DESeq2",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "deseq2-manual-4dc21e1bb44a74d8",
+          "score": 0.66748,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 3
+        },
+        {
+          "rank": 7,
+          "chunk_id": "deseq2-manual-00a3af12b1b2885b",
+          "score": 0.604492,
+          "source_id": "deseq2-manual",
+          "normalized_path": "deseq2-manual/deseq2-manual.md",
+          "section": "DESeq2: Differential gene expression analysis based on the negative binomial distribution",
+          "page_number": 50
+        },
+        {
+          "rank": 8,
+          "chunk_id": "deseq2-vignette-6208c634d33bafcf",
+          "score": 0.560059,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Variations to the standard workflow > Recommendations for single-cell analysis",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "nfcore-rnaseq-docs-21c702e854277176",
+          "score": 0.556152,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Quality control > DESeq2",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "deseq2-vignette-b8f619d87f0bb5cf",
+          "score": 0.5,
+          "source_id": "deseq2-vignette",
+          "normalized_path": "deseq2-vignette/deseq2-vignette.md",
+          "section": "Standard workflow > Input data > Tximeta for import with automatic metadata",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-edger-001",
+      "question": "edgeR 的 plotMDS 图中样本间距离代表什么？",
+      "source_id": "edger-user-guide",
+      "first_relevant_rank": 4,
+      "first_canonical_rank": 4,
+      "canonical_chunk_ids": [
+        "edger-user-guide-425a8ab35acd5cab"
+      ],
+      "relevant_chunk_ids": [
+        "edger-user-guide-425a8ab35acd5cab"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "edger-user-guide-3d0f5e0979c82ced",
+          "score": 0.892578,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 49
+        },
+        {
+          "rank": 2,
+          "chunk_id": "edger-user-guide-b7cb36271dcc1daf",
+          "score": 0.879883,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 57
+        },
+        {
+          "rank": 3,
+          "chunk_id": "edger-user-guide-39daf9176244e53e",
+          "score": 0.724121,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 111
+        },
+        {
+          "rank": 4,
+          "chunk_id": "edger-user-guide-425a8ab35acd5cab",
+          "score": 0.620605,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 28
+        },
+        {
+          "rank": 5,
+          "chunk_id": "edger-user-guide-bfa8bf2c151f7fc8",
+          "score": 0.617676,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 109
+        },
+        {
+          "rank": 6,
+          "chunk_id": "edger-user-guide-f38cad5b3d086e64",
+          "score": 0.525879,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 102
+        },
+        {
+          "rank": 7,
+          "chunk_id": "edger-user-guide-20ca96f89dfbe491",
+          "score": 0.462646,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 61
+        },
+        {
+          "rank": 8,
+          "chunk_id": "edger-user-guide-a0304a04b06c6f7e",
+          "score": 0.439209,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 93
+        },
+        {
+          "rank": 9,
+          "chunk_id": "edger-user-guide-532458e4ddd7c7ec",
+          "score": 0.396484,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 114
+        },
+        {
+          "rank": 10,
+          "chunk_id": "edger-user-guide-cfea36d584f504cb",
+          "score": 0.393066,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 84
+        }
+      ]
+    },
+    {
+      "question_id": "test-edger-002",
+      "question": "edgeR 的配对设计为什么能消除患者间的基线差异？",
+      "source_id": "edger-user-guide",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "edger-user-guide-b91d423673ecf17b"
+      ],
+      "relevant_chunk_ids": [
+        "edger-user-guide-b91d423673ecf17b"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "edger-user-guide-b91d423673ecf17b",
+          "score": 0.917969,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 42
+        },
+        {
+          "rank": 2,
+          "chunk_id": "edger-user-guide-8fa69afe2e19d707",
+          "score": 0.874512,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 45
+        },
+        {
+          "rank": 3,
+          "chunk_id": "edger-user-guide-3039b6c0bc6635ba",
+          "score": 0.74707,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 42
+        },
+        {
+          "rank": 4,
+          "chunk_id": "edger-user-guide-a69e6c460a397ed8",
+          "score": 0.71582,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 15
+        },
+        {
+          "rank": 5,
+          "chunk_id": "edger-user-guide-56cbd0cf94cdbe57",
+          "score": 0.708008,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 43
+        },
+        {
+          "rank": 6,
+          "chunk_id": "edger-user-guide-28e3f2fd04759da7",
+          "score": 0.695801,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 45
+        },
+        {
+          "rank": 7,
+          "chunk_id": "edger-user-guide-3b58bf031c3d9c26",
+          "score": 0.62207,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 52
+        },
+        {
+          "rank": 8,
+          "chunk_id": "edger-user-guide-7a320eb21671c8cb",
+          "score": 0.582031,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 44
+        },
+        {
+          "rank": 9,
+          "chunk_id": "edger-user-guide-75e1802eee80eaf9",
+          "score": 0.458984,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 50
+        },
+        {
+          "rank": 10,
+          "chunk_id": "edger-user-guide-486eb10c0727de30",
+          "score": 0.441162,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 47
+        }
+      ]
+    },
+    {
+      "question_id": "test-edger-003",
+      "question": "edgeR 中增大 prior.count 会对 logCPM 产生什么影响？",
+      "source_id": "edger-user-guide",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "edger-user-guide-788ea97a1d86ea7a"
+      ],
+      "relevant_chunk_ids": [
+        "edger-user-guide-788ea97a1d86ea7a"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "edger-user-guide-788ea97a1d86ea7a",
+          "score": 0.927734,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 29
+        },
+        {
+          "rank": 2,
+          "chunk_id": "edger-user-guide-06832beead53f006",
+          "score": 0.526855,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 125
+        },
+        {
+          "rank": 3,
+          "chunk_id": "edger-user-guide-d7d958413a23e5b1",
+          "score": 0.349854,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 57
+        },
+        {
+          "rank": 4,
+          "chunk_id": "edger-user-guide-d0b1a94dcf0ba34f",
+          "score": 0.275146,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 60
+        },
+        {
+          "rank": 5,
+          "chunk_id": "edger-user-guide-f9430f3c5cb46550",
+          "score": 0.245483,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 67
+        },
+        {
+          "rank": 6,
+          "chunk_id": "edger-user-guide-910a4d3c1f334577",
+          "score": 0.213379,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 14
+        },
+        {
+          "rank": 7,
+          "chunk_id": "edger-user-guide-43f878ce430512d0",
+          "score": 0.138428,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 19
+        },
+        {
+          "rank": 8,
+          "chunk_id": "edger-user-guide-46d1531d419017fb",
+          "score": 0.137695,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 36
+        },
+        {
+          "rank": 9,
+          "chunk_id": "edger-user-guide-5f64730bf6c7f347",
+          "score": 0.136353,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 95
+        },
+        {
+          "rank": 10,
+          "chunk_id": "edger-user-guide-a09c4acb65f75bfb",
+          "score": 0.121033,
+          "source_id": "edger-user-guide",
+          "normalized_path": "edger-user-guide/edger-user-guide.md",
+          "section": "edgeR 官方 User's Guide",
+          "page_number": 116
+        }
+      ]
+    },
+    {
+      "question_id": "test-star-001",
+      "question": "STAR 如何开启 chimeric 或 fusion alignment 检测？",
+      "source_id": "star-manual",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "star-manual-ac88e0940423eb5c"
+      ],
+      "relevant_chunk_ids": [
+        "star-manual-ac88e0940423eb5c"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "star-manual-ac88e0940423eb5c",
+          "score": 0.993652,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 15
+        },
+        {
+          "rank": 2,
+          "chunk_id": "star-manual-e61981fd0e985ac9",
+          "score": 0.967285,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 15
+        },
+        {
+          "rank": 3,
+          "chunk_id": "star-manual-e9e5cc772546254b",
+          "score": 0.949219,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 20
+        },
+        {
+          "rank": 4,
+          "chunk_id": "star-manual-a96b6dd6f9666634",
+          "score": 0.793945,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 55
+        },
+        {
+          "rank": 5,
+          "chunk_id": "star-manual-679f9628c1ebacb0",
+          "score": 0.754395,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 16
+        },
+        {
+          "rank": 6,
+          "chunk_id": "star-manual-1579e599ed230f47",
+          "score": 0.745605,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 22
+        },
+        {
+          "rank": 7,
+          "chunk_id": "star-manual-02028ec3c1b9884a",
+          "score": 0.72168,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 17
+        },
+        {
+          "rank": 8,
+          "chunk_id": "star-manual-102fcac8c23dcdea",
+          "score": 0.655762,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 54
+        },
+        {
+          "rank": 9,
+          "chunk_id": "star-manual-4e878be347a3384b",
+          "score": 0.587402,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 23
+        },
+        {
+          "rank": 10,
+          "chunk_id": "star-manual-c0ebcc668f1ea27e",
+          "score": 0.57666,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 16
+        }
+      ]
+    },
+    {
+      "question_id": "test-star-002",
+      "question": "STAR 如何把 chimeric alignments 写入主 BAM 文件？",
+      "source_id": "star-manual",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "star-manual-e61981fd0e985ac9"
+      ],
+      "relevant_chunk_ids": [
+        "star-manual-e61981fd0e985ac9"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "star-manual-e61981fd0e985ac9",
+          "score": 0.994141,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 15
+        },
+        {
+          "rank": 2,
+          "chunk_id": "star-manual-679f9628c1ebacb0",
+          "score": 0.984375,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 16
+        },
+        {
+          "rank": 3,
+          "chunk_id": "star-manual-b891743316c1e1f1",
+          "score": 0.972168,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 53
+        },
+        {
+          "rank": 4,
+          "chunk_id": "star-manual-ac34503d1b506505",
+          "score": 0.893066,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 2
+        },
+        {
+          "rank": 5,
+          "chunk_id": "star-manual-02028ec3c1b9884a",
+          "score": 0.86377,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 17
+        },
+        {
+          "rank": 6,
+          "chunk_id": "star-manual-c0ebcc668f1ea27e",
+          "score": 0.835449,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 16
+        },
+        {
+          "rank": 7,
+          "chunk_id": "nfcore-rnaseq-docs-4cfac0b528f9af6f",
+          "score": 0.83252,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > STAR via RSEM",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "star-manual-ad92b216c72b96f1",
+          "score": 0.83252,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 18
+        },
+        {
+          "rank": 9,
+          "chunk_id": "star-manual-a96b6dd6f9666634",
+          "score": 0.82373,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 55
+        },
+        {
+          "rank": 10,
+          "chunk_id": "star-manual-53c9346c6b0710fc",
+          "score": 0.800781,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 41
+        }
+      ]
+    },
+    {
+      "question_id": "test-star-003",
+      "question": "STAR 的 vW:i:1 标签在 WASP 过滤中表示什么？",
+      "source_id": "star-manual",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "star-manual-370e38ded3f5bbd7"
+      ],
+      "relevant_chunk_ids": [
+        "star-manual-370e38ded3f5bbd7"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "star-manual-370e38ded3f5bbd7",
+          "score": 0.997559,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 21
+        },
+        {
+          "rank": 2,
+          "chunk_id": "star-manual-319be008c172c420",
+          "score": 0.613281,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 13
+        },
+        {
+          "rank": 3,
+          "chunk_id": "star-manual-4ee52c3db63c8d65",
+          "score": 0.608887,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 37
+        },
+        {
+          "rank": 4,
+          "chunk_id": "star-manual-e0b8fc8aff162d23",
+          "score": 0.154419,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 56
+        },
+        {
+          "rank": 5,
+          "chunk_id": "star-manual-ca2d9f55313af331",
+          "score": 0.072876,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 20
+        },
+        {
+          "rank": 6,
+          "chunk_id": "star-manual-7ebe898d200acc1f",
+          "score": 0.054596,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 3
+        },
+        {
+          "rank": 7,
+          "chunk_id": "star-manual-6a7622dddcdbf4f2",
+          "score": 0.031372,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 3
+        },
+        {
+          "rank": 8,
+          "chunk_id": "star-manual-807088fa76a572a2",
+          "score": 0.029373,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 14
+        },
+        {
+          "rank": 9,
+          "chunk_id": "star-manual-127722c232db3fed",
+          "score": 0.028442,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 12
+        },
+        {
+          "rank": 10,
+          "chunk_id": "star-manual-50d14738d2cf6a24",
+          "score": 0.024094,
+          "source_id": "star-manual",
+          "normalized_path": "star-manual/star-manual.md",
+          "section": "STAR 官方 Manual",
+          "page_number": 12
+        }
+      ]
+    },
+    {
+      "question_id": "test-fastqc-001",
+      "question": "FastQC 图形界面同时打开多个大文件时如何调度读取？",
+      "source_id": "fastqc-help",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "fastqc-help-38eb3d3f935e320b"
+      ],
+      "relevant_chunk_ids": [
+        "fastqc-help-38eb3d3f935e320b"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "fastqc-help-38eb3d3f935e320b",
+          "score": 0.752441,
+          "source_id": "fastqc-help",
+          "normalized_path": "fastqc-help/2 Basic Operations/2.1 Opening a sequence file.md",
+          "section": "Opening a Sequence file",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "multiqc-docs-98d6149fc6237511",
+          "score": 0.492676,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/modules/fastqc.md",
+          "section": null,
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "multiqc-docs-2baa91bb47625f99",
+          "score": 0.434082,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/running_multiqc.md",
+          "section": "Running MultiQC > Choosing where to scan > Ignoring files",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "fastqc-help-377d03a253340557",
+          "score": 0.407959,
+          "source_id": "fastqc-help",
+          "normalized_path": "fastqc-help/2 Basic Operations/2.1 Opening a sequence file.md",
+          "section": "Opening a Sequence file",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "multiqc-docs-50d1aa244f433a8e",
+          "score": 0.376221,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/modules/fastqc.md",
+          "section": null,
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "multiqc-docs-1af963431c551634",
+          "score": 0.307129,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/running_multiqc.md",
+          "section": "Running MultiQC > Choosing where to scan",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "multiqc-docs-b3ce882aeba1db2c",
+          "score": 0.289795,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Ignoring Files",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "cutadapt-docs-51ba6226346bb7ce",
+          "score": 0.26709,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/recipes.md",
+          "section": "Recipes > Processing many samples (with a for loop) > Single-end reads",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "nfcore-rnaseq-docs-b71161915990447e",
+          "score": 0.255127,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > fastp",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "nfcore-rnaseq-docs-c3c215810df07ce1",
+          "score": 0.228149,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > FastQC",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-fastqc-002",
+      "question": "FastQC 用哪些图标颜色表示正常、轻微异常和非常异常？",
+      "source_id": "fastqc-help",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "fastqc-help-e432a6de45f6b4fd"
+      ],
+      "relevant_chunk_ids": [
+        "fastqc-help-e432a6de45f6b4fd"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "fastqc-help-e432a6de45f6b4fd",
+          "score": 0.986328,
+          "source_id": "fastqc-help",
+          "normalized_path": "fastqc-help/2 Basic Operations/2.2 Evaluating Results.md",
+          "section": "Evaluating Results",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "multiqc-docs-914ab014ef0d4bf6",
+          "score": 0.763672,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/modules/fastqc.md",
+          "section": "Showing FastQC status checks",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "fastqc-help-824c89da17ef2a00",
+          "score": 0.237183,
+          "source_id": "fastqc-help",
+          "normalized_path": "fastqc-help/3 Analysis Modules/2 Per Base Sequence Quality.md",
+          "section": "Per Base Sequence Quality > Summary",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "fastqc-help-1ead2255bf6a402e",
+          "score": 0.117798,
+          "source_id": "fastqc-help",
+          "normalized_path": "fastqc-help/3 Analysis Modules/12 Per Tile Sequence Quality.md",
+          "section": "Per Tile Sequence Quality > Summary",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "multiqc-docs-50d1aa244f433a8e",
+          "score": 0.084778,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/modules/fastqc.md",
+          "section": null,
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "fastqc-help-cc91f89d7b23429d",
+          "score": 0.079895,
+          "source_id": "fastqc-help",
+          "normalized_path": "fastqc-help/1 Introduction/1.1 What is FastQC.md",
+          "section": "What is FastQC",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "multiqc-docs-b7ec7dd9d8cdeacf",
+          "score": 0.062683,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/usage/scripts.md",
+          "section": "Using MultiQC within scripts > Parse logs",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "fastqc-help-38eb3d3f935e320b",
+          "score": 0.05072,
+          "source_id": "fastqc-help",
+          "normalized_path": "fastqc-help/2 Basic Operations/2.1 Opening a sequence file.md",
+          "section": "Opening a Sequence file",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "nfcore-rnaseq-docs-c3c215810df07ce1",
+          "score": 0.048126,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > FastQC",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "nfcore-rnaseq-docs-0532965ee901ec07",
+          "score": 0.038544,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Pipeline overview",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-fastqc-003",
+      "question": "FastQC 保存 HTML 报告时默认如何命名？",
+      "source_id": "fastqc-help",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "fastqc-help-e482d8c22d1409bc"
+      ],
+      "relevant_chunk_ids": [
+        "fastqc-help-e482d8c22d1409bc"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "fastqc-help-e482d8c22d1409bc",
+          "score": 0.988281,
+          "source_id": "fastqc-help",
+          "normalized_path": "fastqc-help/2 Basic Operations/2.3 Saving a Report.md",
+          "section": "Saving a Report",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "multiqc-docs-8d8a2024f6711e3a",
+          "score": 0.751465,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/usage/pipelines.md",
+          "section": "Using MultiQC in pipelines > Nextflow > Custom run name",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "nfcore-rnaseq-docs-c3c215810df07ce1",
+          "score": 0.73291,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > FastQC",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "multiqc-docs-98d6149fc6237511",
+          "score": 0.726562,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/modules/fastqc.md",
+          "section": null,
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "multiqc-docs-63a6feb3083f89f4",
+          "score": 0.72168,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/running_multiqc.md",
+          "section": "Running MultiQC > Renaming reports",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "nfcore-rnaseq-docs-8859b7b42cb1e474",
+          "score": 0.63916,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > FastQC (filtered)",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "multiqc-docs-50d1aa244f433a8e",
+          "score": 0.597168,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/modules/fastqc.md",
+          "section": null,
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "multiqc-docs-e614647335dda153",
+          "score": 0.475586,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Sample name cleaning > Cleaning extensions",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "nfcore-rnaseq-docs-b3d07b1dfec088e6",
+          "score": 0.471436,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > TrimGalore",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "nfcore-rnaseq-docs-b71161915990447e",
+          "score": 0.436768,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > fastp",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-multiqc-001",
+      "question": "MultiQC 从多个位置加载配置时，配置冲突如何处理？",
+      "source_id": "multiqc-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "multiqc-docs-8441b7a6d5b9c340"
+      ],
+      "relevant_chunk_ids": [
+        "multiqc-docs-8441b7a6d5b9c340"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "multiqc-docs-8441b7a6d5b9c340",
+          "score": 0.845703,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "multiqc-docs-88890e4e52d0218a",
+          "score": 0.604004,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "multiqc-docs-7f1534a67e5539a2",
+          "score": 0.405762,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/installation.md",
+          "section": "Installing MultiQC > Environment modules",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "multiqc-docs-1b85b908bc5465c3",
+          "score": 0.375732,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > JSON Schema validation > Schema validation in Python",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "multiqc-docs-d00b52dced0eec8f",
+          "score": 0.366699,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/reports/reports.md",
+          "section": "Using MultiQC reports > Toolbox > Save Settings",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "multiqc-docs-dc650f79920322db",
+          "score": 0.329834,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/usage/troubleshooting.md",
+          "section": "Troubleshooting > Not enough samples found",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "multiqc-docs-e496f3616fd1ddeb",
+          "score": 0.288574,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/usage/scripts.md",
+          "section": "Using MultiQC within scripts > Load config from file",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "multiqc-docs-4068d049daaf1d58",
+          "score": 0.271484,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Sample name cleaning > Clashing sample names > Directory names",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "multiqc-docs-9bea2658f2a36f87",
+          "score": 0.263916,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/installation.md",
+          "section": "Installing MultiQC",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "multiqc-docs-079c4d699a07a6d6",
+          "score": 0.258057,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Command-line config",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-multiqc-002",
+      "question": "MultiQC Configuration Wizard 提供哪些实时编辑能力？",
+      "source_id": "multiqc-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "multiqc-docs-bdf6ff904f43b1e9"
+      ],
+      "relevant_chunk_ids": [
+        "multiqc-docs-bdf6ff904f43b1e9"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "multiqc-docs-bdf6ff904f43b1e9",
+          "score": 0.973145,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Config Wizard",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "multiqc-docs-b81b519db59fbbf7",
+          "score": 0.922363,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/quick_start.md",
+          "section": "MultiQC: Quick start > Customise the report",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "multiqc-docs-8441b7a6d5b9c340",
+          "score": 0.779785,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "multiqc-docs-d0cb177b8862db64",
+          "score": 0.692871,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > JSON Schema validation",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "multiqc-docs-02e9024bf928f478",
+          "score": 0.368896,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > JSON Schema validation > JSON Schema Store",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "multiqc-docs-88890e4e52d0218a",
+          "score": 0.330566,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "multiqc-docs-81d32cdaed7efc06",
+          "score": 0.325684,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/running_multiqc.md",
+          "section": "Running MultiQC",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "multiqc-docs-8414b6cfa4794213",
+          "score": 0.31665,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/usage/pipelines.md",
+          "section": "Using MultiQC in pipelines",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "multiqc-docs-53111d7d2fe400a0",
+          "score": 0.27002,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Toolbox Settings",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "multiqc-docs-3900ca5608c99040",
+          "score": 0.152344,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > JSON Schema validation > Using with VSCode",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-multiqc-003",
+      "question": "MultiQC 的 fn_clean_exts 匹配到扩展名后如何处理样本名？",
+      "source_id": "multiqc-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "multiqc-docs-e614647335dda153"
+      ],
+      "relevant_chunk_ids": [
+        "multiqc-docs-e614647335dda153"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "multiqc-docs-e614647335dda153",
+          "score": 0.98291,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Sample name cleaning > Cleaning extensions",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "multiqc-docs-e3b3e3a4a860f98a",
+          "score": 0.959961,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Sample name cleaning > Other search types > `remove`",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "multiqc-docs-203c5350ae936560",
+          "score": 0.951172,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Sample name cleaning > Other search types > `regex_keep`",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "multiqc-docs-3357c3c30e408523",
+          "score": 0.892578,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Sample name cleaning > Trimming extensions",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "multiqc-docs-64f96b840b1fade5",
+          "score": 0.878418,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/usage/scripts.md",
+          "section": "Using MultiQC within scripts > Parse logs",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "multiqc-docs-229927c1bad24d4f",
+          "score": 0.870605,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Sample name cleaning > Other search types > `module`",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "multiqc-docs-15836c30e3f489f0",
+          "score": 0.867188,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Sample name cleaning > Clashing sample names > Filename truncation",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "multiqc-docs-dcdaa35fd1ea3642",
+          "score": 0.827637,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Sample name cleaning > Other search types > `truncate` (default)",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "multiqc-docs-56ec005166b705cb",
+          "score": 0.81543,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Sample name cleaning > Other search types",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "multiqc-docs-ac312023d23a62f1",
+          "score": 0.797852,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/getting_started/config.md",
+          "section": "Configuring MultiQC > Ignoring samples",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-nfcore-001",
+      "question": "nf-core/rnaseq 的 fq lint 每个文库输出什么文件？",
+      "source_id": "nfcore-rnaseq-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "nfcore-rnaseq-docs-eeb7b19ab672baef"
+      ],
+      "relevant_chunk_ids": [
+        "nfcore-rnaseq-docs-eeb7b19ab672baef"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "nfcore-rnaseq-docs-eeb7b19ab672baef",
+          "score": 0.995605,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > fq lint",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "nfcore-rnaseq-docs-1d0837cdf39b248f",
+          "score": 0.972656,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Quality control > dupRadar",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "nfcore-rnaseq-docs-02fb9a0c4ef72733",
+          "score": 0.971191,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage.md",
+          "section": "nf-core/rnaseq: Usage > Samplesheet input > Linting",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "nfcore-rnaseq-docs-1a5769ccc468e3eb",
+          "score": 0.96875,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > STAR, Salmon and Kallisto",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "nfcore-rnaseq-docs-ffa8a403bcecbbb0",
+          "score": 0.964355,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Quality control > RSeQC > Infer experiment",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "nfcore-rnaseq-docs-dc2a628efa6b6a28",
+          "score": 0.964355,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Pseudoalignment and quantification > Pseudoalignment",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "nfcore-rnaseq-docs-a7dbee896816e7c1",
+          "score": 0.962402,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Quality control > Preseq",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "nfcore-rnaseq-docs-202fe2174b65fefe",
+          "score": 0.95752,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Pseudoalignment and quantification > Pseudoalignment",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "nfcore-rnaseq-docs-ecfbc52386d0464b",
+          "score": 0.956055,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Pseudoalignment and quantification > Pseudoalignment",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "nfcore-rnaseq-docs-ea8a8102c563174f",
+          "score": 0.955566,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Quality control > RSeQC > TIN",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-nfcore-002",
+      "question": "nf-core/rnaseq 如何保存 UMI extraction 后的 FASTQ 中间文件？",
+      "source_id": "nfcore-rnaseq-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "nfcore-rnaseq-docs-09d3d77ebf8d3e79"
+      ],
+      "relevant_chunk_ids": [
+        "nfcore-rnaseq-docs-09d3d77ebf8d3e79"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "nfcore-rnaseq-docs-09d3d77ebf8d3e79",
+          "score": 0.993164,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > UMI-tools extract",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "nfcore-rnaseq-docs-a52d8249b26a9b2c",
+          "score": 0.958984,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment post-processing > UMI dedup",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "nfcore-rnaseq-docs-621ef9d9f160caa9",
+          "score": 0.933594,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > HISAT2",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "nfcore-rnaseq-docs-479407976d48cb34",
+          "score": 0.902832,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > cat",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "nfcore-rnaseq-docs-5338d5be2f79f773",
+          "score": 0.866699,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > BBSplit",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "nfcore-rnaseq-docs-2599aa4bf5fe4bc5",
+          "score": 0.827637,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > BBSplit",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "nfcore-rnaseq-docs-b71161915990447e",
+          "score": 0.786621,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > fastp",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "nfcore-rnaseq-docs-b3d07b1dfec088e6",
+          "score": 0.739258,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > TrimGalore",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "nfcore-rnaseq-docs-4cfac0b528f9af6f",
+          "score": 0.713867,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > STAR via RSEM",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "nfcore-rnaseq-docs-ef2e24e3f9fd60cb",
+          "score": 0.653809,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > rRNA removal > SortMeRNA (default)",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-nfcore-003",
+      "question": "nf-core/rnaseq 的 TrimGalore 在什么条件下保存 adapter trimming 后的 FASTQ？",
+      "source_id": "nfcore-rnaseq-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "nfcore-rnaseq-docs-b3d07b1dfec088e6",
+        "nfcore-rnaseq-docs-b71161915990447e"
+      ],
+      "relevant_chunk_ids": [
+        "nfcore-rnaseq-docs-b3d07b1dfec088e6",
+        "nfcore-rnaseq-docs-b71161915990447e"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "nfcore-rnaseq-docs-b3d07b1dfec088e6",
+          "score": 0.981445,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > TrimGalore",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "nfcore-rnaseq-docs-aff7ec30d99f0ff1",
+          "score": 0.942383,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage.md",
+          "section": "nf-core/rnaseq: Usage > Adapter trimming options",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "nfcore-rnaseq-docs-b71161915990447e",
+          "score": 0.929199,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > fastp",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "nfcore-rnaseq-docs-c3c215810df07ce1",
+          "score": 0.759277,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > FastQC",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "nfcore-rnaseq-docs-e041a776180abe1a",
+          "score": 0.650879,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage/differential_expression_analysis/theory.md",
+          "section": "RNAseq Analysis > Pre-processing",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "nfcore-rnaseq-docs-ea6864a0cfec7aa1",
+          "score": 0.555176,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Quality control > Kraken2/Bracken",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "nfcore-rnaseq-docs-a03b7a01092b3b43",
+          "score": 0.49707,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage.md",
+          "section": "nf-core/rnaseq: Usage > Adapter trimming options",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "nfcore-rnaseq-docs-479407976d48cb34",
+          "score": 0.470703,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > cat",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "cutadapt-docs-7b35eb3404793ba2",
+          "score": 0.468994,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Trimming paired-end reads > Trimming paired-end reads separately",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "nfcore-rnaseq-docs-5338d5be2f79f773",
+          "score": 0.44458,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Preprocessing > BBSplit",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-salmon-001",
+      "question": "Salmon genome projection 为什么要求 name-grouped BAM？",
+      "source_id": "salmon-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "salmon-docs-d4a58b8e8d9885fe"
+      ],
+      "relevant_chunk_ids": [
+        "salmon-docs-d4a58b8e8d9885fe"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "salmon-docs-d4a58b8e8d9885fe",
+          "score": 0.97168,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/guides/genome-projection.md",
+          "section": "Requirements",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "salmon-docs-59020cbd82df828f",
+          "score": 0.944824,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/reference/cli.md",
+          "section": "`salmon quant` > Inputs / outputs",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "salmon-docs-67421d9ec7d746c0",
+          "score": 0.943359,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/guides/genome-projection.md",
+          "section": null,
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "salmon-docs-20aa0fcb51378267",
+          "score": 0.325684,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/guides/genome-projection.md",
+          "section": "How it works",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "nfcore-rnaseq-docs-3429e21e17985215",
+          "score": 0.200562,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > STAR, Salmon and Kallisto",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "nfcore-rnaseq-docs-3c29efd2a1aa2ab9",
+          "score": 0.174316,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage.md",
+          "section": "nf-core/rnaseq: Usage > Alignment options",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "nfcore-rnaseq-docs-9671a7316ee4013a",
+          "score": 0.171631,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage/differential_expression_analysis/theory.md",
+          "section": "RNAseq Analysis > Alignment (or lightweight alignment) and quantification",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "nfcore-rnaseq-docs-b73cf0f4e6e36927",
+          "score": 0.129761,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > Bowtie2 and Salmon (Prokaryotic)",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "nfcore-rnaseq-docs-0fb0e57a1613145b",
+          "score": 0.121277,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > STAR, Salmon and Kallisto",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "nfcore-rnaseq-docs-226c1625e19650c1",
+          "score": 0.118591,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage.md",
+          "section": "nf-core/rnaseq: Usage > Samplesheet input > Full samplesheet",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-salmon-002",
+      "question": "Salmon genome projection 能直接接受 coordinate-sorted BAM 吗？",
+      "source_id": "salmon-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "salmon-docs-d4a58b8e8d9885fe"
+      ],
+      "relevant_chunk_ids": [
+        "salmon-docs-d4a58b8e8d9885fe"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "salmon-docs-d4a58b8e8d9885fe",
+          "score": 0.976562,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/guides/genome-projection.md",
+          "section": "Requirements",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "salmon-docs-59020cbd82df828f",
+          "score": 0.864746,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/reference/cli.md",
+          "section": "`salmon quant` > Inputs / outputs",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "salmon-docs-67421d9ec7d746c0",
+          "score": 0.862305,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/guides/genome-projection.md",
+          "section": null,
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "nfcore-rnaseq-docs-0fb0e57a1613145b",
+          "score": 0.51416,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > STAR, Salmon and Kallisto",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "nfcore-rnaseq-docs-3c29efd2a1aa2ab9",
+          "score": 0.40918,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage.md",
+          "section": "nf-core/rnaseq: Usage > Alignment options",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "salmon-docs-20aa0fcb51378267",
+          "score": 0.322998,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/guides/genome-projection.md",
+          "section": "How it works",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "nfcore-rnaseq-docs-226c1625e19650c1",
+          "score": 0.30249,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/usage.md",
+          "section": "nf-core/rnaseq: Usage > Samplesheet input > Full samplesheet",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "nfcore-rnaseq-docs-3429e21e17985215",
+          "score": 0.255615,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > STAR, Salmon and Kallisto",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "nfcore-rnaseq-docs-1e1dd1161e46a814",
+          "score": 0.204956,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment post-processing > SAMtools",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "nfcore-rnaseq-docs-8aa29909c9710b6c",
+          "score": 0.175781,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > STAR via RSEM",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-salmon-003",
+      "question": "Salmon 2.0 是否改变了 quant.sf 等下游依赖的输出格式？",
+      "source_id": "salmon-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "salmon-docs-cffb07ed84d38365"
+      ],
+      "relevant_chunk_ids": [
+        "salmon-docs-cffb07ed84d38365"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "salmon-docs-cffb07ed84d38365",
+          "score": 0.997559,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/getting-started/introduction.md",
+          "section": "salmon 2.0 (Rust) vs. C++ salmon",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "salmon-docs-2bdf46075a7479d7",
+          "score": 0.992188,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/index.md",
+          "section": "What is salmon?",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "salmon-docs-93b68295b1805a0e",
+          "score": 0.976074,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/reference/output-formats.md",
+          "section": null,
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "salmon-docs-556b2f5e0bdd9218",
+          "score": 0.762207,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/reference/cli.md",
+          "section": "`salmon quantmerge`",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "salmon-docs-0cf14477dd9c9ca6",
+          "score": 0.758789,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/reference/output-formats.md",
+          "section": null,
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "salmon-docs-942e0d38ba0bdbee",
+          "score": 0.732422,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/getting-started/introduction.md",
+          "section": "The pipeline",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "salmon-docs-165aecacf746a07c",
+          "score": 0.705566,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/reference/output-formats.md",
+          "section": "Index directory",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "salmon-docs-725aa6954606b9f9",
+          "score": 0.683105,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/reference/output-formats.md",
+          "section": "C++-compatible files > `aux_info/bootstrap/` — inferential replicates (gzip) [--numBootstraps / --numGibbsSamples]",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "nfcore-rnaseq-docs-ade0b39c8a7a208f",
+          "score": 0.640625,
+          "source_id": "nfcore-rnaseq-docs",
+          "normalized_path": "nfcore-rnaseq-docs/output.md",
+          "section": "nf-core/rnaseq: Output > Alignment and quantification > Bowtie2 and Salmon (Prokaryotic)",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "salmon-docs-65fa07b40b3704cc",
+          "score": 0.574219,
+          "source_id": "salmon-docs",
+          "normalized_path": "salmon-docs/reference/output-formats.md",
+          "section": "C++-compatible files > `quant.sf` — primary abundance table (TSV)",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-cutadapt-001",
+      "question": "Cutadapt 的 poly-A trimming 会排除非 A 碱基比例超过多少的候选后缀？",
+      "source_id": "cutadapt-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "cutadapt-docs-55dc31d18cfd9a68"
+      ],
+      "relevant_chunk_ids": [
+        "cutadapt-docs-55dc31d18cfd9a68"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "cutadapt-docs-55dc31d18cfd9a68",
+          "score": 0.884277,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/algorithms.md",
+          "section": "Algorithm details > Poly-A trimming algorithm",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "cutadapt-docs-303b60b86981dae2",
+          "score": 0.594238,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/reference.md",
+          "section": "Reference guide > JSON report format > Example",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "cutadapt-docs-f85c9622d805cc7f",
+          "score": 0.27832,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/recipes.md",
+          "section": "Recipes > Trim poly-A tails",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "cutadapt-docs-e3c3de896bc404de",
+          "score": 0.223877,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Dealing with N bases",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "cutadapt-docs-a7e8d272dd5d4a43",
+          "score": 0.176147,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Trimming paired-end reads > Trimming paired-end reads separately",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "cutadapt-docs-77f4938981ccba7e",
+          "score": 0.161377,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Specifying adapter sequences > Wildcards",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "cutadapt-docs-50df1d1d175abf79",
+          "score": 0.134888,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/algorithms.md",
+          "section": "Algorithm details > Quality trimming algorithm",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "cutadapt-docs-dfe87c3355052853",
+          "score": 0.125732,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Illumina TruSeq",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "multiqc-docs-f8b631a6c22dce2a",
+          "score": 0.123047,
+          "source_id": "multiqc-docs",
+          "normalized_path": "multiqc-docs/modules/cutadapt.md",
+          "section": null,
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "cutadapt-docs-8338bed9f03b81dc",
+          "score": 0.121155,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Modifying reads > Quality trimming > Quality trimming of reads using two-color chemistry (NextSeq)",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-cutadapt-002",
+      "question": "Cutadapt 哪个参数根据 expected errors 阈值丢弃 reads？",
+      "source_id": "cutadapt-docs",
+      "first_relevant_rank": 6,
+      "first_canonical_rank": 6,
+      "canonical_chunk_ids": [
+        "cutadapt-docs-3c35e0bd516663f1"
+      ],
+      "relevant_chunk_ids": [
+        "cutadapt-docs-3c35e0bd516663f1"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "cutadapt-docs-d664484e478e9395",
+          "score": 0.914062,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Adapter-search parameters > Minimum overlap (reducing random matches)",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "cutadapt-docs-77643146f1579ebf",
+          "score": 0.863281,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Adapter types > Anchored 5' adapters",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "cutadapt-docs-4daf82f8534c5a68",
+          "score": 0.860352,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Trimming paired-end reads",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "cutadapt-docs-a6382ba29be05bc2",
+          "score": 0.859375,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Trimming paired-end reads > Filtering paired-end reads",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "cutadapt-docs-a7e8d272dd5d4a43",
+          "score": 0.848633,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Trimming paired-end reads > Trimming paired-end reads separately",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "cutadapt-docs-3c35e0bd516663f1",
+          "score": 0.839355,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/algorithms.md",
+          "section": "Algorithm details > Expected errors",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "cutadapt-docs-1e9da922c9606068",
+          "score": 0.82373,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Cutadapt's output > How to read the report",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "cutadapt-docs-303b60b86981dae2",
+          "score": 0.785645,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/reference.md",
+          "section": "Reference guide > JSON report format > Example",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "cutadapt-docs-312aa98c118f2c4d",
+          "score": 0.779785,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Adapter-search parameters > Error tolerance",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "cutadapt-docs-e3c3de896bc404de",
+          "score": 0.777344,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Dealing with N bases",
+          "page_number": null
+        }
+      ]
+    },
+    {
+      "question_id": "test-cutadapt-003",
+      "question": "Cutadapt 处理每条 read 的三个主要阶段是什么？",
+      "source_id": "cutadapt-docs",
+      "first_relevant_rank": 1,
+      "first_canonical_rank": 1,
+      "canonical_chunk_ids": [
+        "cutadapt-docs-5a233f2d34203351"
+      ],
+      "relevant_chunk_ids": [
+        "cutadapt-docs-5a233f2d34203351"
+      ],
+      "results": [
+        {
+          "rank": 1,
+          "chunk_id": "cutadapt-docs-5a233f2d34203351",
+          "score": 0.97168,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Read processing stages",
+          "page_number": null
+        },
+        {
+          "rank": 2,
+          "chunk_id": "cutadapt-docs-25a013a193ece35a",
+          "score": 0.654785,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Adapter types > Regular 3' adapters",
+          "page_number": null
+        },
+        {
+          "rank": 3,
+          "chunk_id": "cutadapt-docs-be8a3e6600229230",
+          "score": 0.643555,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Adapter types > Regular 3' adapters",
+          "page_number": null
+        },
+        {
+          "rank": 4,
+          "chunk_id": "cutadapt-docs-0ebe7b9c03ebae93",
+          "score": 0.63916,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/recipes.md",
+          "section": "Recipes > Processing many samples (with a for loop)",
+          "page_number": null
+        },
+        {
+          "rank": 5,
+          "chunk_id": "cutadapt-docs-054a3749adb8c9eb",
+          "score": 0.487549,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Demultiplexing",
+          "page_number": null
+        },
+        {
+          "rank": 6,
+          "chunk_id": "cutadapt-docs-b9b277bc75f0ee13",
+          "score": 0.466797,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Adapter types",
+          "page_number": null
+        },
+        {
+          "rank": 7,
+          "chunk_id": "cutadapt-docs-6fb941b31ce1d48b",
+          "score": 0.459961,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Multiple adapters > Trimming more than one adapter from each read",
+          "page_number": null
+        },
+        {
+          "rank": 8,
+          "chunk_id": "cutadapt-docs-7fdc9eb51479dfd3",
+          "score": 0.453369,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/guide.md",
+          "section": "User guide > Adapter-search parameters > Searching reverse complements",
+          "page_number": null
+        },
+        {
+          "rank": 9,
+          "chunk_id": "cutadapt-docs-dbf955b2c4a772bc",
+          "score": 0.446045,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/reference.md",
+          "section": "Reference guide > Read modification order",
+          "page_number": null
+        },
+        {
+          "rank": 10,
+          "chunk_id": "cutadapt-docs-a3001033a8c49a51",
+          "score": 0.404053,
+          "source_id": "cutadapt-docs",
+          "normalized_path": "cutadapt-docs/algorithms.md",
+          "section": "Algorithm details > Alignment algorithm changes in Cutadapt 4",
+          "page_number": null
+        }
+      ]
+    }
+  ]
+}
