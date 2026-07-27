@@ -142,7 +142,7 @@ docker compose down
 - 默认镜像源使用 `docker.m.daocloud.io`，网络正常时可在 `.env` 中设置 `DOCKER_REGISTRY=docker.io`。
 - 预构建镜像由 `.github/workflows/docker-publish.yml` 在 `main` 分支和 `v*.*.*` 标签推送时发布。
 - Web 容器已经设置 CSP、防 MIME 嗅探和禁止被页面嵌套等安全响应头。HSTS 必须由实际提供 HTTPS 的网关或反向代理添加，不能在本地 HTTP 容器中强制开启。
-- `MAX_CONCURRENT_RETRIEVALS` 和 `MAX_CONCURRENT_GENERATIONS` 分别控制 GPU 检索和远程 LLM 并发。6 GB 显存默认只允许一个检索/索引任务，但 LLM 网络等待不会继续占用 GPU 槽。
+- `MAX_CONCURRENT_RETRIEVALS` 和 `MAX_CONCURRENT_GENERATIONS` 分别控制本地模型和远程 LLM 并发。文档索引另有独立锁，但仍占用一个检索槽；CPU 默认允许两个槽，GPU 覆盖配置对 6 GB 显存保守限制为一个，可通过 `GPU_MAX_CONCURRENT_RETRIEVALS` 调整。
 
 ## 本地开发启动
 

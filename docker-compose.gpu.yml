@@ -5,3 +5,4 @@ services:
     environment:
       EMBEDDING_DEVICE: cuda
       RERANKER_DEVICE: cuda
+      MAX_CONCURRENT_RETRIEVALS: ${GPU_MAX_CONCURRENT_RETRIEVALS:-1}
