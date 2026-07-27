@@ -20,7 +20,7 @@ services:
       retries: 20
 
   ai-service:
-    image: ${AI_SERVICE_IMAGE:-bio-rag-ai-service:latest}
+    image: bio-rag-ai-service:latest
     build:
       context: ./ai-service-python
       dockerfile: Dockerfile
@@ -36,7 +36,7 @@ services:
         host=postgres port=5432 dbname=${POSTGRES_DB:-biorag}
         user=${POSTGRES_USER:-biorag} password=${POSTGRES_PASSWORD:-biorag_dev}
       DATABASE_CONNECT_TIMEOUT_SECONDS: ${DATABASE_CONNECT_TIMEOUT_SECONDS:-5}
-      MAX_CONCURRENT_RETRIEVALS: ${MAX_CONCURRENT_RETRIEVALS:-1}
+      MAX_CONCURRENT_RETRIEVALS: ${MAX_CONCURRENT_RETRIEVALS:-2}
       MAX_CONCURRENT_GENERATIONS: ${MAX_CONCURRENT_GENERATIONS:-4}
       UPLOAD_ROOT: /app/uploads
       UPLOAD_ARTIFACT_ROOT: /app/artifacts/uploads
@@ -74,7 +74,7 @@ services:
         condition: service_healthy
 
   backend-java:
-    image: ${BACKEND_IMAGE:-bio-rag-backend-java:latest}
+    image: bio-rag-backend-java:latest
     build:
       context: ./backend-java
       dockerfile: Dockerfile
@@ -112,7 +112,7 @@ services:
         condition: service_healthy
 
   web:
-    image: ${WEB_IMAGE:-bio-rag-web:latest}
+    image: bio-rag-web:latest
     build:
       context: ./web
       dockerfile: Dockerfile
