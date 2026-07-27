@@ -28,14 +28,21 @@ jobs:
             image: bio-rag-web
             context: ./web
             dockerfile: ./web/Dockerfile
+            build_args: |
+              DOCKER_REGISTRY=docker.io
           - service: backend-java
             image: bio-rag-backend-java
             context: ./backend-java
             dockerfile: ./backend-java/Dockerfile
+            build_args: |
+              DOCKER_REGISTRY=docker.io
+              MAVEN_MIRROR_URL=https://repo.maven.apache.org/maven2
           - service: ai-service
             image: bio-rag-ai-service
             context: ./ai-service-python
             dockerfile: ./ai-service-python/Dockerfile
+            build_args: |
+              DOCKER_REGISTRY=docker.io
 
     steps:
       - name: Checkout repository
@@ -76,8 +83,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            DOCKER_REGISTRY=docker.io
-            MAVEN_MIRROR_URL=https://repo.maven.apache.org/maven2
+          build-args: ${{ matrix.build_args }}
           cache-from: type=gha,scope=${{ matrix.service }}
           cache-to: type=gha,mode=max,scope=${{ matrix.service }}
