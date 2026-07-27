@@ -10,7 +10,8 @@ on:
 
 concurrency:
   group: docker-publish-${{ github.ref }}
-  cancel-in-progress: true
+  # AI 镜像包含 CUDA 运行库，构建和推送时间较长；后续提交不应取消正在发布的镜像。
+  cancel-in-progress: false
 
 permissions:
   contents: read
