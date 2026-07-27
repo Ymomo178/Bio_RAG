@@ -24,7 +24,8 @@ Bio_RAG/
 ├── infra/               # 基础设施脚本，目前包含 pgvector 初始化 SQL
 ├── data/                # 评测集和数据源配置；原始数据与向量索引不提交
 ├── reports/             # 检索评测结果
-├── docker-compose.yml   # 四服务 Docker Compose：Web、Java、Python、PostgreSQL
+├── docker-compose.yml   # 源码构建版 Docker Compose：Web、Java、Python、PostgreSQL
+├── docker-compose.images.yml # 预构建镜像版 Docker Compose
 └── docker-compose.gpu.yml # NVIDIA GPU 推理覆盖配置
 ```
 
@@ -42,6 +43,7 @@ Bio_RAG/
 - 引用来源、章节、页码和关联图片展示
 - 无答案兜底和基础评测集
 - Docker Compose 一键启动四服务
+- GitHub Actions 发布 GHCR 预构建镜像
 
 尚未完成：
 
@@ -71,13 +73,43 @@ APP_ADMIN_EMAIL=你的管理员邮箱
 
 不要提交 `.env`。
 
-### 2. CPU 模式启动
+数据库配置分为容器和宿主机两组，不能混用地址：
+
+- `POSTGRES_DB`、`POSTGRES_USER`、`POSTGRES_PASSWORD` 创建 Docker 中的 PostgreSQL。
+- 在宿主机运行 Java 时，`DB_URL` 必须使用 `localhost`，并让 `DB_USERNAME`、`DB_PASSWORD` 与上面的容器账号一致。
+- 在宿主机运行 Python 时，`AI_DATABASE_URL` 同样使用 `host=localhost`，账号密码也要一致。
+- Compose 会在容器内自动改用服务名 `postgres`，因此不要把 `.env` 中的宿主机地址手动改成 `postgres`。
+
+示例中的 `biorag_dev` 只适合本地开发。部署到共享或公网环境时应更换数据库密码，并在 HTTPS 入口下设置 `SESSION_COOKIE_SECURE=true`；本地 `http://localhost:5173` 保持 `false`。
+
+容器启动时会校验 `LLM_BASE_URL`、`LLM_API_KEY`、`LLM_MODEL` 和 `APP_ADMIN_EMAIL`。缺少配置时服务会直接终止并在容器日志中指出缺少的变量，避免运行到第一次请求才失败。
+
+### 2. 使用预构建镜像启动
+
+不想在本机编译 Java、Node、Python 和 PyTorch 依赖时，使用 GHCR 镜像版 Compose：
+
+```powershell
+docker compose -f docker-compose.images.yml up -d
+```
+
+NVIDIA GPU 模式：
+
+```powershell
+docker compose -f docker-compose.images.yml -f docker-compose.gpu.yml up -d
+```
+
+如果拉取 GHCR 镜像时提示无权限，需要先在 GitHub Packages 中把三个容器包设为公开，或登录 GHCR 后再拉取。
+默认使用 `latest` 并在启动时重新拉取；需要可重复部署时，在 `.env` 的 `WEB_IMAGE`、`BACKEND_IMAGE`、`AI_SERVICE_IMAGE` 中固定版本标签。
+
+### 3. 本地源码构建启动
+
+如果正在开发代码，使用源码构建版 Compose：
 
 ```powershell
 docker compose up -d --build
 ```
 
-### 3. NVIDIA GPU 模式启动
+### 4. 本地源码构建 + NVIDIA GPU
 
 已经安装 NVIDIA Container Toolkit 或 Docker Desktop GPU 支持时使用：
 
@@ -85,7 +117,7 @@ docker compose up -d --build
 docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d --build
 ```
 
-### 4. 访问地址
+### 5. 访问地址
 
 ```text
 网页入口：http://localhost:5173
@@ -108,6 +140,9 @@ docker compose down
 - 首次构建会下载 Java、Node、Python、PyTorch 等基础依赖，耗时较长。
 - 首次问答或首次上传文档会下载 BGE-M3 和 Reranker 模型，模型缓存保存在 Docker 卷 `model_cache`。
 - 默认镜像源使用 `docker.m.daocloud.io`，网络正常时可在 `.env` 中设置 `DOCKER_REGISTRY=docker.io`。
+- 预构建镜像由 `.github/workflows/docker-publish.yml` 在 `main` 分支和 `v*.*.*` 标签推送时发布。
+- Web 容器已经设置 CSP、防 MIME 嗅探和禁止被页面嵌套等安全响应头。HSTS 必须由实际提供 HTTPS 的网关或反向代理添加，不能在本地 HTTP 容器中强制开启。
+- `MAX_CONCURRENT_RETRIEVALS` 和 `MAX_CONCURRENT_GENERATIONS` 分别控制 GPU 检索和远程 LLM 并发。6 GB 显存默认只允许一个检索/索引任务，但 LLM 网络等待不会继续占用 GPU 槽。
 
 ## 本地开发启动
 
@@ -135,6 +170,8 @@ LLM_API_KEY=你的 API Key
 LLM_MODEL=你的模型名
 APP_ADMIN_EMAIL=你的管理员邮箱
 ```
+
+本地进程通过 `localhost:${POSTGRES_PORT}` 访问数据库。确认 `DB_USERNAME`、`DB_PASSWORD` 以及 `AI_DATABASE_URL` 中的账号密码与 `POSTGRES_USER`、`POSTGRES_PASSWORD` 相同；`postgres` 这个主机名只在 Compose 网络内可用。
 
 ### 2. 启动数据库
 
@@ -207,8 +244,8 @@ npm run build
 
 当前基线：
 
-- Java：20 tests passed
-- Python：44 tests passed
+- Java：22 tests passed
+- Python：49 tests passed
 - Web：production build passed
 
 ## 数据说明
@@ -232,8 +269,7 @@ npm run build
 
 1. 增加内置知识库初始化流程
 2. 增加 GitHub Actions 自动测试
-3. 发布预构建镜像到 GitHub Container Registry
-4. 整理发布版本 `v0.1.0`
+3. 整理发布版本 `v0.1.0`
 
 ## 免责声明
 

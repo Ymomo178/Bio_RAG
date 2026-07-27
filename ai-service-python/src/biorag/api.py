@@ -1,12 +1,47 @@
 """Bio-RAG Python 查询服务，负责数据库检索和 Reranker。"""
 
+import logging
 import os
 from pathlib import Path
-from threading import Lock
+from threading import BoundedSemaphore, Lock
 from typing import Any
 from uuid import UUID
 
 from biorag.config import load_project_environment
+
+logger = logging.getLogger(__name__)
+
+
+class _LockedRetriever:
+    """只在实际检索期间串行访问共享的模型和数据库连接。"""
+
+    def __init__(self, retriever: Any, lock: Any) -> None:
+        self._retriever = retriever
+        self._lock = lock
+
+    def search(self, *args: Any, **kwargs: Any) -> Any:
+        with self._lock:
+            return self._retriever.search(*args, **kwargs)
+
+
+class _LockedAnswerGenerator:
+    """只在单次 LLM 调用期间串行访问共享客户端。"""
+
+    def __init__(self, llm: Any, lock: Any) -> None:
+        self._llm = llm
+        self._lock = lock
+
+    def contextualize(self, *args: Any, **kwargs: Any) -> Any:
+        with self._lock:
+            return self._llm.contextualize(*args, **kwargs)
+
+    def generate(self, *args: Any, **kwargs: Any) -> Any:
+        with self._lock:
+            return self._llm.generate(*args, **kwargs)
+
+    def generate_general(self, *args: Any, **kwargs: Any) -> Any:
+        with self._lock:
+            return self._llm.generate_general(*args, **kwargs)
 
 
 def create_app(
@@ -21,6 +56,16 @@ def create_app(
         from pydantic import BaseModel, Field
     except ImportError as error:
         raise RuntimeError("请安装服务依赖：pip install -e '.[service]'") from error
+
+    database_connection_string = None
+    if retriever is None:
+        database_connection_string = _database_connection_string()
+
+    llm_config = None
+    if llm is None:
+        from biorag.generation.llm import LlmConfig
+
+        llm_config = LlmConfig.from_environment()
 
     class SearchRequest(BaseModel):
         """定义检索接口的用户问题和知识库范围。"""
@@ -122,23 +167,33 @@ def create_app(
     app.state.retriever = retriever
     app.state.store = store
     app.state.llm = llm
-    app.state.evidence_threshold = float(os.getenv("MIN_EVIDENCE_SCORE", "0"))
-    app.state.retriever_lock = Lock()
-    app.state.llm_lock = Lock()
-    app.state.inference_lock = Lock()
+    app.state.database_connection_string = database_connection_string
+    app.state.llm_config = llm_config
+    app.state.evidence_threshold = _evidence_threshold()
+    app.state.retriever_init_lock = Lock()
+    app.state.llm_init_lock = Lock()
+    app.state.retrieval_lock = BoundedSemaphore(_positive_int_environment(
+        "MAX_CONCURRENT_RETRIEVALS", 1
+    ))
+    app.state.generation_lock = BoundedSemaphore(_positive_int_environment(
+        "MAX_CONCURRENT_GENERATIONS", 4
+    ))
+    app.state.indexing_lock = Lock()
 
     def resolve_retriever() -> Any:
         """按需加载 GPU 模型和 PostgreSQL 连接，避免健康检查触发模型加载。"""
         if app.state.retriever is not None:
             return app.state.retriever
-        with app.state.retriever_lock:
+        with app.state.retriever_init_lock:
             if app.state.retriever is not None:
                 return app.state.retriever
             from biorag.retrieval.dense import SentenceTransformerEmbedder
             from biorag.retrieval.hybrid import CrossEncoderReranker, HybridSearchConfig
             from biorag.retrieval.postgres import PostgresChunkStore, PostgresHybridRetriever
 
-            connection_string = _database_connection_string()
+            connection_string = app.state.database_connection_string
+            if connection_string is None:
+                raise RuntimeError("数据库连接配置未初始化")
             app.state.store = PostgresChunkStore(connection_string)
             embedder = SentenceTransformerEmbedder(
                 model_name=os.getenv("EMBEDDING_MODEL", "BAAI/bge-m3"),
@@ -167,12 +222,14 @@ def create_app(
         """按需读取 .env 并创建 OpenAI 兼容的 Qwen 客户端。"""
         if app.state.llm is not None:
             return app.state.llm
-        with app.state.llm_lock:
+        with app.state.llm_init_lock:
             if app.state.llm is not None:
                 return app.state.llm
-            from biorag.generation.llm import LlmConfig, OpenAICompatibleLlm
+            from biorag.generation.llm import OpenAICompatibleLlm
 
-            app.state.llm = OpenAICompatibleLlm(LlmConfig.from_environment())
+            if app.state.llm_config is None:
+                raise RuntimeError("LLM 配置未初始化")
+            app.state.llm = OpenAICompatibleLlm(app.state.llm_config)
         return app.state.llm
 
     @app.get("/health")
@@ -183,14 +240,15 @@ def create_app(
         try:
             app.state.store.healthcheck()
         except Exception as error:
-            raise HTTPException(status_code=503, detail=f"数据库不可用：{error}") from error
+            logger.exception("数据库健康检查失败")
+            raise HTTPException(status_code=503, detail="数据库暂不可用") from error
         return {"status": "UP", "database": "UP"}
 
     @app.post("/api/v1/retrieval/search", response_model=SearchResponse)
     def search(request: SearchRequest) -> SearchResponse:
         """执行混合检索和重排序，返回可供 LLM 使用的证据。"""
         try:
-            with app.state.inference_lock:
+            with app.state.retrieval_lock:
                 active_retriever = resolve_retriever()
                 results = active_retriever.search(
                     request.question,
@@ -198,7 +256,8 @@ def create_app(
                     request.resolved_knowledge_base_ids(),
                 )
         except Exception as error:
-            raise HTTPException(status_code=503, detail=f"检索服务不可用：{error}") from error
+            logger.exception("检索请求处理失败")
+            raise HTTPException(status_code=503, detail="检索服务暂不可用") from error
         hits = [
             SearchHit(
                 chunk_id=result.chunk_id,
@@ -222,23 +281,23 @@ def create_app(
             from biorag.generation.answering import RagAnswerService
             from biorag.generation.llm import ConversationMessage
 
-            with app.state.inference_lock:
-                service = RagAnswerService(
-                    resolve_retriever(),
-                    resolve_llm(),
-                    app.state.evidence_threshold,
-                )
-                result = service.answer(
-                    request.question,
-                    request.top_k,
-                    request.resolved_knowledge_base_ids(),
-                    [
-                        ConversationMessage(role=item.role, content=item.content)
-                        for item in request.history
-                    ],
-                )
+            service = RagAnswerService(
+                _LockedRetriever(resolve_retriever(), app.state.retrieval_lock),
+                _LockedAnswerGenerator(resolve_llm(), app.state.generation_lock),
+                app.state.evidence_threshold,
+            )
+            result = service.answer(
+                request.question,
+                request.top_k,
+                request.resolved_knowledge_base_ids(),
+                [
+                    ConversationMessage(role=item.role, content=item.content)
+                    for item in request.history
+                ],
+            )
         except Exception as error:
-            raise HTTPException(status_code=503, detail=f"回答生成服务不可用：{error}") from error
+            logger.exception("回答生成请求处理失败")
+            raise HTTPException(status_code=503, detail="回答生成服务暂不可用") from error
         citations = [
             CitationResponse(
                 evidence_id=citation.evidence_id,
@@ -269,7 +328,7 @@ def create_app(
         try:
             from biorag.ingestion.upload import index_uploaded_document
 
-            with app.state.inference_lock:
+            with app.state.indexing_lock, app.state.retrieval_lock:
                 active_retriever = resolve_retriever()
                 source_path = _validated_upload_path(request.source_path)
                 store = app.state.store or getattr(active_retriever, "store", None)
@@ -286,7 +345,8 @@ def create_app(
                     store=store,
                 )
         except Exception as error:
-            raise HTTPException(status_code=503, detail=f"文档索引服务不可用：{error}") from error
+            logger.exception("文档索引请求处理失败")
+            raise HTTPException(status_code=503, detail="文档索引服务暂不可用") from error
         return DocumentIndexResponse(
             document_version_id=request.document_version_id,
             chunk_count=result.chunk_count,
@@ -298,14 +358,35 @@ def create_app(
 
 
 def _database_connection_string() -> str:
-    """从统一环境变量读取 PostgreSQL 连接字符串。"""
-    return os.getenv(
-        "AI_DATABASE_URL",
-        os.getenv(
-            "DATABASE_URL",
-            "host=localhost port=5432 dbname=biorag user=biorag password=biorag_dev",
-        ),
-    )
+    """读取必要的 PostgreSQL 连接字符串，并在启动阶段拒绝空配置。"""
+    connection_string = (
+        os.getenv("AI_DATABASE_URL") or os.getenv("DATABASE_URL") or ""
+    ).strip()
+    if not connection_string:
+        raise ValueError("缺少数据库配置：AI_DATABASE_URL 或 DATABASE_URL")
+    return connection_string
+
+
+def _evidence_threshold() -> float:
+    """读取并校验证据阈值，避免请求到达后才暴露配置错误。"""
+    try:
+        threshold = float(os.getenv("MIN_EVIDENCE_SCORE", "0.85"))
+    except ValueError as error:
+        raise ValueError("MIN_EVIDENCE_SCORE 必须是数字") from error
+    if not 0 <= threshold <= 1:
+        raise ValueError("MIN_EVIDENCE_SCORE 必须在 0 和 1 之间")
+    return threshold
+
+
+def _positive_int_environment(name: str, default: int) -> int:
+    """读取正整数并发配置，避免无效信号量让服务在请求阶段才失败。"""
+    try:
+        value = int(os.getenv(name, str(default)))
+    except ValueError as error:
+        raise ValueError(f"{name} 必须是正整数") from error
+    if value <= 0:
+        raise ValueError(f"{name} 必须是正整数")
+    return value
 
 
 def _validated_upload_path(raw_path: str) -> Path:

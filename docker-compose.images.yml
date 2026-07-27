@@ -20,12 +20,8 @@ services:
       retries: 20
 
   ai-service:
-    image: ${AI_SERVICE_IMAGE:-bio-rag-ai-service:latest}
-    build:
-      context: ./ai-service-python
-      dockerfile: Dockerfile
-      args:
-        DOCKER_REGISTRY: ${DOCKER_REGISTRY:-docker.m.daocloud.io}
+    image: ${AI_SERVICE_IMAGE:-ghcr.io/ymomo178/bio-rag-ai-service:latest}
+    pull_policy: always
     restart: unless-stopped
     init: true
     shm_size: "2gb"
@@ -74,13 +70,8 @@ services:
         condition: service_healthy
 
   backend-java:
-    image: ${BACKEND_IMAGE:-bio-rag-backend-java:latest}
-    build:
-      context: ./backend-java
-      dockerfile: Dockerfile
-      args:
-        DOCKER_REGISTRY: ${DOCKER_REGISTRY:-docker.m.daocloud.io}
-        MAVEN_MIRROR_URL: ${MAVEN_MIRROR_URL:-https://maven.aliyun.com/repository/public}
+    image: ${BACKEND_IMAGE:-ghcr.io/ymomo178/bio-rag-backend-java:latest}
+    pull_policy: always
     restart: unless-stopped
     environment:
       SPRING_PROFILES_ACTIVE: docker
@@ -112,12 +103,8 @@ services:
         condition: service_healthy
 
   web:
-    image: ${WEB_IMAGE:-bio-rag-web:latest}
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-      args:
-        DOCKER_REGISTRY: ${DOCKER_REGISTRY:-docker.m.daocloud.io}
+    image: ${WEB_IMAGE:-ghcr.io/ymomo178/bio-rag-web:latest}
+    pull_policy: always
     restart: unless-stopped
     ports:
       - "${WEB_PORT:-5173}:80"

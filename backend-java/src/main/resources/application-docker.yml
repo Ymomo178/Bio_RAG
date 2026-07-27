@@ -1,4 +1,4 @@
-# Docker 内部通过服务名访问 PostgreSQL，并允许本地 HTTP 页面携带会话 Cookie。
+# Docker 内部通过服务名访问 PostgreSQL。容器自身保持安全默认值，本地 Compose 会显式允许 HTTP。
 spring:
   datasource:
     url: ${DB_URL:jdbc:postgresql://postgres:5432/biorag}
@@ -10,7 +10,10 @@ server:
   servlet:
     session:
       cookie:
-        secure: ${SESSION_COOKIE_SECURE:false}
+        secure: ${SESSION_COOKIE_SECURE:true}
+
+app:
+  require-admin-email: true
 
 logging:
   level:

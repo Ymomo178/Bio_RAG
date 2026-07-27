@@ -25,6 +25,7 @@ server:
       cookie:
         http-only: true
         same-site: strict
+        secure: ${SESSION_COOKIE_SECURE:false}
 
 app:
   admin-email: ${APP_ADMIN_EMAIL:}
