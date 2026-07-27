@@ -247,16 +247,14 @@ function App() {
     } catch (cause) { showError(cause); }
   }
 
-  /** 上传文件并把 Python 返回的最终索引状态放入文档列表。 */
+  /** 上传一个文件并把 Python 返回的最终索引状态放入文档列表。 */
   async function addDocument(file: File) {
-    if (!documentKnowledgeBaseId) return;
+    if (!documentKnowledgeBaseId) throw new Error("请先选择知识库");
     setBusy(true);
     setError(null);
     try {
       const created = await api.uploadDocument(documentKnowledgeBaseId, file);
       setDocuments((current) => [created, ...current]);
-    } catch (cause) {
-      showError(cause);
     } finally {
       setBusy(false);
     }
