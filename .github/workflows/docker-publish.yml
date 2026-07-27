@@ -10,7 +10,7 @@ on:
 
 concurrency:
   group: docker-publish-${{ github.ref }}
-  # AI 镜像包含 CUDA 运行库，构建和推送时间较长；后续提交不应取消正在发布的镜像。
+  # CUDA 镜像构建和推送时间较长；后续提交不应取消正在发布的镜像。
   cancel-in-progress: false
 
 permissions:
@@ -31,6 +31,12 @@ jobs:
             dockerfile: ./web/Dockerfile
             build_args: |
               DOCKER_REGISTRY=docker.io
+            tags: |
+              type=ref,event=branch
+              type=ref,event=tag
+              type=semver,pattern={{version}}
+              type=sha,prefix=sha-
+              type=raw,value=latest,enable={{is_default_branch}}
           - service: backend-java
             image: bio-rag-backend-java
             context: ./backend-java
@@ -38,12 +44,38 @@ jobs:
             build_args: |
               DOCKER_REGISTRY=docker.io
               MAVEN_MIRROR_URL=https://repo.maven.apache.org/maven2
-          - service: ai-service
+            tags: |
+              type=ref,event=branch
+              type=ref,event=tag
+              type=semver,pattern={{version}}
+              type=sha,prefix=sha-
+              type=raw,value=latest,enable={{is_default_branch}}
+          - service: ai-service-cpu
             image: bio-rag-ai-service
             context: ./ai-service-python
             dockerfile: ./ai-service-python/Dockerfile
             build_args: |
               DOCKER_REGISTRY=docker.io
+              TORCH_INDEX_URL=https://download.pytorch.org/whl/cpu
+            tags: |
+              type=ref,event=branch
+              type=ref,event=tag
+              type=semver,pattern={{version}}
+              type=sha,prefix=sha-,suffix=-cpu
+              type=raw,value=cpu
+              type=raw,value=latest,enable={{is_default_branch}}
+          - service: ai-service-cuda
+            image: bio-rag-ai-service
+            context: ./ai-service-python
+            dockerfile: ./ai-service-python/Dockerfile
+            build_args: |
+              DOCKER_REGISTRY=docker.io
+              TORCH_INDEX_URL=https://download.pytorch.org/whl/cu124
+            tags: |
+              type=ref,event=tag,suffix=-cuda
+              type=semver,pattern={{version}},suffix=-cuda
+              type=sha,prefix=sha-,suffix=-cuda
+              type=raw,value=cuda
 
     steps:
       - name: Checkout repository
@@ -69,12 +101,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ steps.owner.outputs.name }}/${{ matrix.image }}
-          tags: |
-            type=ref,event=branch
-            type=ref,event=tag
-            type=semver,pattern={{version}}
-            type=sha,prefix=sha-
-            type=raw,value=latest,enable={{is_default_branch}}
+          tags: ${{ matrix.tags }}
 
       - name: Build and optionally push image
         uses: docker/build-push-action@v6

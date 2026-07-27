@@ -1,5 +1,7 @@
 services:
   ai-service:
+    # 预构建模式拉取 CUDA 标签；源码模式会用本地 Dockerfile 构建同等 CUDA 环境。
+    image: ${AI_SERVICE_CUDA_IMAGE:-ghcr.io/ymomo178/bio-rag-ai-service:cuda}
     # 仅在安装 NVIDIA Container Toolkit 的设备上启用。
     gpus: all
     environment:

@@ -86,20 +86,20 @@ APP_ADMIN_EMAIL=你的管理员邮箱
 
 ### 2. 使用预构建镜像启动
 
-不想在本机编译 Java、Node、Python 和 PyTorch 依赖时，使用 GHCR 镜像版 Compose：
+不想在本机编译 Java、Node、Python 和 PyTorch 依赖时，使用 GHCR 镜像版 Compose。默认的 AI 服务使用体积更小、兼容性更好的 CPU 镜像（`:latest`，同时发布为 `:cpu`）：
 
 ```powershell
 docker compose -f docker-compose.images.yml up -d
 ```
 
-NVIDIA GPU 模式：
+安装了 NVIDIA Container Toolkit 或 Docker Desktop GPU 支持时，使用单独发布的 CUDA 12.4 镜像（`:cuda`）：
 
 ```powershell
 docker compose -f docker-compose.images.yml -f docker-compose.gpu.yml up -d
 ```
 
 如果拉取 GHCR 镜像时提示无权限，需要先在 GitHub Packages 中把三个容器包设为公开，或登录 GHCR 后再拉取。
-默认使用 `latest` 并在启动时重新拉取；需要可重复部署时，在 `.env` 的 `WEB_IMAGE`、`BACKEND_IMAGE`、`AI_SERVICE_IMAGE` 中固定版本标签。
+默认使用 `latest` CPU 镜像并在启动时重新拉取；GPU 覆盖配置会改用 `AI_SERVICE_CUDA_IMAGE` 指定的 `cuda` 镜像。需要可重复部署时，在 `.env` 的 `WEB_IMAGE`、`BACKEND_IMAGE`、`AI_SERVICE_IMAGE` 和 `AI_SERVICE_CUDA_IMAGE` 中固定版本标签。
 
 ### 3. 本地源码构建启动
 
@@ -140,7 +140,7 @@ docker compose down
 - 首次构建会下载 Java、Node、Python、PyTorch 等基础依赖，耗时较长。
 - 首次问答或首次上传文档会下载 BGE-M3 和 Reranker 模型，模型缓存保存在 Docker 卷 `model_cache`。
 - 默认镜像源使用 `docker.m.daocloud.io`，网络正常时可在 `.env` 中设置 `DOCKER_REGISTRY=docker.io`。
-- 预构建镜像由 `.github/workflows/docker-publish.yml` 在 `main` 分支和 `v*.*.*` 标签推送时发布。
+- 预构建镜像由 `.github/workflows/docker-publish.yml` 在 `main` 分支和 `v*.*.*` 标签推送时发布；AI 服务的 `latest`/`cpu` 为 CPU 版，`cuda` 为 NVIDIA CUDA 12.4 版。
 - Web 容器已经设置 CSP、防 MIME 嗅探和禁止被页面嵌套等安全响应头。HSTS 必须由实际提供 HTTPS 的网关或反向代理添加，不能在本地 HTTP 容器中强制开启。
 - `MAX_CONCURRENT_RETRIEVALS` 和 `MAX_CONCURRENT_GENERATIONS` 分别控制本地模型和远程 LLM 并发。文档索引另有独立锁，但仍占用一个检索槽；CPU 默认允许两个槽，GPU 覆盖配置对 6 GB 显存保守限制为一个，可通过 `GPU_MAX_CONCURRENT_RETRIEVALS` 调整。
 
