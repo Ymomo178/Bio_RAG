@@ -24,7 +24,8 @@ Bio_RAG/
 ├── infra/               # 基础设施脚本，目前包含 pgvector 初始化 SQL
 ├── data/                # 评测集和数据源配置；原始数据与向量索引不提交
 ├── reports/             # 检索评测结果
-└── docker-compose.yml   # 当前主要用于启动 PostgreSQL + pgvector
+├── docker-compose.yml   # 四服务 Docker Compose：Web、Java、Python、PostgreSQL
+└── docker-compose.gpu.yml # NVIDIA GPU 推理覆盖配置
 ```
 
 ## 功能状态
@@ -40,25 +41,84 @@ Bio_RAG/
 - RAG 检索、Reranker 和 Qwen 生成
 - 引用来源、章节、页码和关联图片展示
 - 无答案兜底和基础评测集
+- Docker Compose 一键启动四服务
 
 尚未完成：
 
-- 完整 Docker 镜像打包
 - 一键初始化内置知识库
 - GitHub Actions 自动测试
 - 生产级部署配置
 
-## 本地启动
+## Docker 启动
+
+推荐优先使用 Docker。浏览器只需要访问 Web 容器，Web 会把 `/api` 请求转发给 Java，Java 再调用 Python AI 服务。
+
+### 1. 准备配置
+
+```powershell
+Copy-Item .env.example .env
+```
+
+至少填写：
+
+```env
+LLM_PROVIDER=qwen
+LLM_BASE_URL=你的 OpenAI 兼容接口地址
+LLM_API_KEY=你的 API Key
+LLM_MODEL=你的模型名
+APP_ADMIN_EMAIL=你的管理员邮箱
+```
+
+不要提交 `.env`。
+
+### 2. CPU 模式启动
+
+```powershell
+docker compose up -d --build
+```
+
+### 3. NVIDIA GPU 模式启动
+
+已经安装 NVIDIA Container Toolkit 或 Docker Desktop GPU 支持时使用：
+
+```powershell
+docker compose -f docker-compose.yml -f docker-compose.gpu.yml up -d --build
+```
+
+### 4. 访问地址
+
+```text
+网页入口：http://localhost:5173
+Java 后端：http://localhost:8080
+Python AI：http://localhost:8000
+PostgreSQL：localhost:5432
+```
+
+常用命令：
+
+```powershell
+docker compose ps
+docker compose logs -f backend-java
+docker compose logs -f ai-service
+docker compose down
+```
+
+说明：
+
+- 首次构建会下载 Java、Node、Python、PyTorch 等基础依赖，耗时较长。
+- 首次问答或首次上传文档会下载 BGE-M3 和 Reranker 模型，模型缓存保存在 Docker 卷 `model_cache`。
+- 默认镜像源使用 `docker.m.daocloud.io`，网络正常时可在 `.env` 中设置 `DOCKER_REGISTRY=docker.io`。
+
+## 本地开发启动
 
 ### 1. 准备环境
 
-需要：
+如果要分别调试 Java、Python 或前端，可以使用本地开发模式。需要：
 
 - Java 21
 - Python 3.12
 - Node.js 20+
-- Docker Desktop
-- PostgreSQL + pgvector，通过 Docker Compose 启动
+- Docker Desktop，用于启动 PostgreSQL + pgvector
 
 复制环境变量示例：
 
@@ -75,8 +135,6 @@ LLM_API_KEY=你的 API Key
 LLM_MODEL=你的模型名
 APP_ADMIN_EMAIL=你的管理员邮箱
 ```
-
-不要提交 `.env`。
 
 ### 2. 启动数据库
 
@@ -172,11 +230,10 @@ npm run build
 
 计划中的工程化工作：
 
-1. 编写 Java、Python、Web 的 Dockerfile
-2. 扩展 `docker-compose.yml`，实现一键启动完整系统
-3. 增加内置知识库初始化流程
-4. 增加 GitHub Actions 自动测试
-5. 整理发布版本 `v0.1.0`
+1. 增加内置知识库初始化流程
+2. 增加 GitHub Actions 自动测试
+3. 发布预构建镜像到 GitHub Container Registry
+4. 整理发布版本 `v0.1.0`
 
 ## 免责声明
 

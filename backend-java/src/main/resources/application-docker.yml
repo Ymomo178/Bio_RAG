@@ -1,0 +1,18 @@
+# Docker 内部通过服务名访问 PostgreSQL，并允许本地 HTTP 页面携带会话 Cookie。
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://postgres:5432/biorag}
+    username: ${DB_USERNAME:biorag}
+    password: ${DB_PASSWORD:biorag_dev}
+
+server:
+  forward-headers-strategy: framework
+  servlet:
+    session:
+      cookie:
+        secure: ${SESSION_COOKIE_SECURE:false}
+
+logging:
+  level:
+    root: INFO
+    com.biorag.platform: INFO

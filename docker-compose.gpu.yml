@@ -1,0 +1,7 @@
+services:
+  ai-service:
+    # 仅在安装 NVIDIA Container Toolkit 的设备上启用。
+    gpus: all
+    environment:
+      EMBEDDING_DEVICE: cuda
+      RERANKER_DEVICE: cuda

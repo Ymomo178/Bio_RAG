@@ -2,13 +2,14 @@ name: bio-rag
 
 services:
   postgres:
-    image: pgvector/pgvector:pg17
+    image: ${DOCKER_REGISTRY:-docker.m.daocloud.io}/pgvector/pgvector:pg17
+    restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-biorag}
       POSTGRES_USER: ${POSTGRES_USER:-biorag}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-biorag_dev}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./infra/postgres/init-pgvector.sql:/docker-entrypoint-initdb.d/01-init-pgvector.sql:ro
@@ -16,7 +17,109 @@ services:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 20
+
+  ai-service:
+    build:
+      context: ./ai-service-python
+      dockerfile: Dockerfile
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY:-docker.m.daocloud.io}
+    restart: unless-stopped
+    init: true
+    shm_size: "2gb"
+    environment:
+      AI_SERVICE_HOST: 0.0.0.0
+      AI_SERVICE_PORT: 8000
+      AI_DATABASE_URL: >-
+        host=postgres port=5432 dbname=${POSTGRES_DB:-biorag}
+        user=${POSTGRES_USER:-biorag} password=${POSTGRES_PASSWORD:-biorag_dev}
+      DATABASE_CONNECT_TIMEOUT_SECONDS: ${DATABASE_CONNECT_TIMEOUT_SECONDS:-5}
+      UPLOAD_ROOT: /app/uploads
+      UPLOAD_ARTIFACT_ROOT: /app/artifacts/uploads
+      LLM_PROVIDER: ${LLM_PROVIDER:-qwen}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-qwen3.7-flash}
+      LLM_TIMEOUT_SECONDS: ${LLM_TIMEOUT_SECONDS:-60}
+      LLM_MAX_TOKENS: ${LLM_MAX_TOKENS:-1200}
+      LLM_TEMPERATURE: ${LLM_TEMPERATURE:-0.1}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-BAAI/bge-m3}
+      EMBEDDING_DEVICE: ${EMBEDDING_DEVICE:-cpu}
+      EMBEDDING_BATCH_SIZE: ${EMBEDDING_BATCH_SIZE:-4}
+      RERANKER_MODEL: ${RERANKER_MODEL:-BAAI/bge-reranker-v2-m3}
+      RERANKER_MODEL_PATH: ${RERANKER_MODEL_PATH:-}
+      RERANKER_DEVICE: ${RERANKER_DEVICE:-cpu}
+      RERANKER_BATCH_SIZE: ${RERANKER_BATCH_SIZE:-4}
+      MODEL_LOCAL_FILES_ONLY: ${MODEL_LOCAL_FILES_ONLY:-false}
+      DENSE_CANDIDATE_COUNT: ${DENSE_CANDIDATE_COUNT:-100}
+      KEYWORD_CANDIDATE_COUNT: ${KEYWORD_CANDIDATE_COUNT:-100}
+      RERANK_CANDIDATE_COUNT: ${RERANK_CANDIDATE_COUNT:-100}
+      MIN_EVIDENCE_SCORE: ${MIN_EVIDENCE_SCORE:-0.85}
+      HF_ENDPOINT: ${HF_ENDPOINT:-https://hf-mirror.com}
+      HF_HOME: /models/huggingface
+      HF_HUB_DISABLE_TELEMETRY: "1"
+      TOKENIZERS_PARALLELISM: "false"
+    ports:
+      - "${PYTHON_PORT:-8000}:8000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./artifacts:/app/artifacts
+      - model_cache:/models
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  backend-java:
+    build:
+      context: ./backend-java
+      dockerfile: Dockerfile
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY:-docker.m.daocloud.io}
+        MAVEN_MIRROR_URL: ${MAVEN_MIRROR_URL:-https://maven.aliyun.com/repository/public}
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8080
+      DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-biorag}
+      DB_USERNAME: ${POSTGRES_USER:-biorag}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-biorag_dev}
+      AI_SERVICE_BASE_URL: http://ai-service:8000
+      AI_SERVICE_CONNECT_TIMEOUT: ${AI_SERVICE_CONNECT_TIMEOUT:-3s}
+      AI_SERVICE_READ_TIMEOUT: ${AI_SERVICE_READ_TIMEOUT:-300s}
+      MAX_FILE_SIZE: ${MAX_FILE_SIZE:-25MB}
+      MAX_REQUEST_SIZE: ${MAX_REQUEST_SIZE:-25MB}
+      UPLOAD_ROOT: /app/uploads
+      UPLOAD_ARTIFACT_ROOT: /app/artifacts/uploads
+      REPOSITORY_ROOT: /app
+      APP_ADMIN_EMAIL: ${APP_ADMIN_EMAIL:-}
+      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-false}
+      JAVA_TOOL_OPTIONS: ${JAVA_TOOL_OPTIONS:--XX:MaxRAMPercentage=75.0}
+    ports:
+      - "${JAVA_PORT:-8080}:8080"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./artifacts:/app/artifacts
+      - ./data:/app/data:ro
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ai-service:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        DOCKER_REGISTRY: ${DOCKER_REGISTRY:-docker.m.daocloud.io}
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-5173}:80"
+    depends_on:
+      backend-java:
+        condition: service_healthy
 
 volumes:
   postgres_data:
+  model_cache:
