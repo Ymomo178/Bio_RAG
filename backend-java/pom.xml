@@ -13,18 +13,22 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BioRagBackend</name>
 	<description>Bio RAG business backend</description>
-	<url/>
+	<url>https://github.com/Ymomo178/Bio_RAG</url>
 	<licenses>
-		<license/>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+			<distribution>repo</distribution>
+		</license>
 	</licenses>
 	<developers>
 		<developer/>
 	</developers>
 	<scm>
-		<connection/>
-		<developerConnection/>
+		<connection>scm:git:https://github.com/Ymomo178/Bio_RAG.git</connection>
+		<developerConnection>scm:git:https://github.com/Ymomo178/Bio_RAG.git</developerConnection>
 		<tag/>
-		<url/>
+		<url>https://github.com/Ymomo178/Bio_RAG</url>
 	</scm>
 	<properties>
 		<java.version>21</java.version>
