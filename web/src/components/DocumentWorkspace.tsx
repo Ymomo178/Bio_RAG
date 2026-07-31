@@ -1,4 +1,4 @@
-import { CheckCircle2, CircleAlert, FileText, LoaderCircle, Trash2, Upload, X } from "lucide-react";
+import { CheckCircle2, CircleAlert, Database, FileText, LoaderCircle, Lock, Trash2, Upload, X } from "lucide-react";
 import { ChangeEvent, useEffect, useState } from "react";
 import type { KnowledgeBase, KnowledgeDocument } from "../types";
 
@@ -17,7 +17,7 @@ type DocumentWorkspaceProps = {
   selectedKnowledgeBaseId: string;
   busy: boolean;
   onSelectKnowledgeBase: (id: string) => void;
-  onUpload: (file: File) => Promise<void>;
+  onUpload: (knowledgeBaseId: string, file: File) => Promise<void>;
   onDelete: (document: KnowledgeDocument) => Promise<void>;
 };
 
@@ -36,6 +36,15 @@ export function DocumentWorkspace({
 
   useEffect(() => setUploadItems([]), [selectedKnowledgeBaseId]);
 
+  /** 切换目标知识库前确认未上传队列，避免文件被误传到另一处。 */
+  function selectKnowledgeBase(nextId: string) {
+    if (nextId === selectedKnowledgeBaseId) return;
+    const hasUnfinishedFiles = uploadItems.some((item) => item.status !== "success");
+    if (hasUnfinishedFiles && !window.confirm("切换知识库会清空当前上传列表，是否继续？")) return;
+    setUploadItems([]);
+    onSelectKnowledgeBase(nextId);
+  }
+
   /** 读取用户一次选择的多个文件，并过滤同一批次中的重复项。 */
   function chooseFiles(event: ChangeEvent<HTMLInputElement>) {
     const uniqueFiles = Array.from(event.target.files ?? []).filter((file, index, files) =>
@@ -52,13 +61,14 @@ export function DocumentWorkspace({
 
   /** 依次上传等待中或失败的文件，保证单个失败不会中断整批任务。 */
   async function uploadAll() {
+    if (!selectedKnowledgeBaseId) return;
     const candidates = uploadItems.filter((item) => item.status === "pending" || item.status === "failed");
     if (candidates.length === 0) return;
     setUploading(true);
     for (const item of candidates) {
       updateUploadItem(item.key, { status: "uploading", error: null });
       try {
-        await onUpload(item.file);
+        await onUpload(selectedKnowledgeBaseId, item.file);
         updateUploadItem(item.key, { status: "success", error: null });
       } catch (cause) {
         updateUploadItem(item.key, {
@@ -85,27 +95,51 @@ export function DocumentWorkspace({
   const failedCount = uploadItems.filter((item) => item.status === "failed").length;
   const actionableCount = pendingCount + failedCount;
   const controlsDisabled = busy || uploading;
+  const selectedKnowledgeBase = knowledgeBases.find((item) => item.id === selectedKnowledgeBaseId);
 
   return (
     <section className="management-workspace">
       <header className="management-header">
-        <div><h1>文档</h1><p>上传后由 Python 自动解析、切分并建立向量索引</p></div>
-        <select
-          className="header-select"
-          value={selectedKnowledgeBaseId}
-          disabled={controlsDisabled}
-          onChange={(event) => onSelectKnowledgeBase(event.target.value)}
-        >
-          <option value="">选择知识库</option>
-          {knowledgeBases.map((item) => <option key={item.id} value={item.id}>{item.name}{item.editable ? "" : "（只读）"}</option>)}
-        </select>
+        <div><h1>文档</h1><p>先选择目标知识库，再上传并建立索引</p></div>
       </header>
 
-      {!selectedKnowledgeBaseId ? (
-        <div className="empty-state"><FileText size={28} /><strong>请先选择或创建知识库</strong></div>
-      ) : (
-        <div className="document-area">
-          {knowledgeBases.find((item) => item.id === selectedKnowledgeBaseId)?.editable && <div className="upload-panel">
+      <div className="document-area">
+        <section className="document-target" aria-labelledby="document-target-title">
+          <div className="document-target-heading">
+            <span className="document-target-icon"><Database size={18} /></span>
+            <div>
+              <strong id="document-target-title">目标知识库</strong>
+              <span>文件、文本块和图片都将归入所选知识库</span>
+            </div>
+          </div>
+          <label className="document-target-select">
+            <span>上传到</span>
+            <select
+              value={selectedKnowledgeBaseId}
+              disabled={controlsDisabled}
+              onChange={(event) => selectKnowledgeBase(event.target.value)}
+            >
+              <option value="">请选择知识库</option>
+              {knowledgeBases.map((item) => <option key={item.id} value={item.id}>{item.name}{item.editable ? "" : "（只读）"}</option>)}
+            </select>
+          </label>
+        </section>
+
+        {!selectedKnowledgeBase ? (
+          <div className="document-empty-selection"><FileText size={28} /><strong>请选择文档要上传到哪个知识库</strong><span>没有知识库时，请先到“知识库”页面创建一个。</span></div>
+        ) : !selectedKnowledgeBase.editable ? (
+          <>
+            <div className="document-readonly-notice"><Lock size={16} /><span>“{selectedKnowledgeBase.name}”是只读知识库，你可以查看其中的文档，但不能上传。</span></div>
+            <DocumentList knowledgeBase={selectedKnowledgeBase} documents={documents} onDelete={onDelete} />
+          </>
+        ) : (
+          <>
+            <div className="upload-panel">
+              <div className="upload-destination">
+                <Database size={15} />
+                <span>本批文件将上传到</span>
+                <strong title={selectedKnowledgeBase.name}>{selectedKnowledgeBase.name}</strong>
+              </div>
             <div className="upload-strip">
               <label className={`file-picker ${controlsDisabled ? "disabled" : ""}`}>
                 <input
@@ -139,7 +173,7 @@ export function DocumentWorkspace({
                     <span className="upload-file-icon"><FileText size={16} /></span>
                     <div className="upload-file-main">
                       <strong title={item.file.name}>{item.file.name}</strong>
-                      <span>{formatFileSize(item.file.size)}{item.error ? ` · ${item.error}` : ""}</span>
+                      <span>{formatFileSize(item.file.size)} · 目标：{selectedKnowledgeBase.name}{item.error ? ` · ${item.error}` : ""}</span>
                     </div>
                     <UploadState status={item.status} />
                     <button
@@ -155,26 +189,45 @@ export function DocumentWorkspace({
                 ))}
               </div>
             )}
-          </div>}
-          <div className="resource-list document-list">
-            <div className="resource-list-head"><strong>知识库文档</strong><span>{documents.length}</span></div>
-            {documents.length === 0 && <div className="empty-resource"><FileText size={22} /><span>还没有上传文档</span></div>}
-            {documents.map((document) => (
-              <article className="resource-row" key={document.id}>
-                <span className="resource-icon"><FileText size={18} /></span>
-                <div className="resource-main">
-                  <strong>{document.name}</strong>
-                  <span>{document.chunkCount} 个文本块 · {document.imageCount} 张图片</span>
-                  {document.errorMessage && <small className="row-error">{document.errorMessage}</small>}
-                </div>
-                <span className={`document-status status-${document.status.toLowerCase()}`}>{statusName(document.status)}</span>
-                {knowledgeBases.find((item) => item.id === selectedKnowledgeBaseId)?.editable && <button className="danger-icon" onClick={() => void onDelete(document)} title="删除文档"><Trash2 size={16} /></button>}
-              </article>
-            ))}
-          </div>
-        </div>
-      )}
+            </div>
+            <DocumentList knowledgeBase={selectedKnowledgeBase} documents={documents} onDelete={onDelete} />
+          </>
+        )}
+      </div>
     </section>
+  );
+}
+
+/** 展示当前所选知识库中的文档，标题始终标明文档归属。 */
+function DocumentList({
+  knowledgeBase,
+  documents,
+  onDelete
+}: {
+  knowledgeBase: KnowledgeBase;
+  documents: KnowledgeDocument[];
+  onDelete: (document: KnowledgeDocument) => Promise<void>;
+}) {
+  return (
+    <div className="resource-list document-list">
+      <div className="resource-list-head document-list-head">
+        <strong title={knowledgeBase.name}>{knowledgeBase.name} · 文档</strong>
+        <span>{documents.length}</span>
+      </div>
+      {documents.length === 0 && <div className="empty-resource"><FileText size={22} /><span>这个知识库还没有文档</span></div>}
+      {documents.map((document) => (
+        <article className="resource-row" key={document.id}>
+          <span className="resource-icon"><FileText size={18} /></span>
+          <div className="resource-main">
+            <strong>{document.name}</strong>
+            <span>所属：{knowledgeBase.name} · {document.chunkCount} 个文本块 · {document.imageCount} 张图片</span>
+            {document.errorMessage && <small className="row-error">{document.errorMessage}</small>}
+          </div>
+          <span className={`document-status status-${document.status.toLowerCase()}`}>{statusName(document.status)}</span>
+          {knowledgeBase.editable && <button className="danger-icon" onClick={() => void onDelete(document)} title="删除文档"><Trash2 size={16} /></button>}
+        </article>
+      ))}
+    </div>
   );
 }
 

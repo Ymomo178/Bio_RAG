@@ -84,9 +84,7 @@ function App() {
         setCurrentConversation(null);
         setMessages([]);
       }
-      if (loadedKnowledgeBases.length > 0) {
-        setDocumentKnowledgeBaseId((current) => current || loadedKnowledgeBases.find((item) => item.editable)?.id || loadedKnowledgeBases[0].id);
-      }
+      setDocumentKnowledgeBaseId("");
     } catch (cause) {
       showError(cause);
     }
@@ -248,13 +246,15 @@ function App() {
   }
 
   /** 上传一个文件并把 Python 返回的最终索引状态放入文档列表。 */
-  async function addDocument(file: File) {
-    if (!documentKnowledgeBaseId) throw new Error("请先选择知识库");
+  async function addDocument(knowledgeBaseId: string, file: File) {
+    if (!knowledgeBaseId) throw new Error("请先选择目标知识库");
     setBusy(true);
     setError(null);
     try {
-      const created = await api.uploadDocument(documentKnowledgeBaseId, file);
-      setDocuments((current) => [created, ...current]);
+      const created = await api.uploadDocument(knowledgeBaseId, file);
+      if (documentKnowledgeBaseId === knowledgeBaseId) {
+        setDocuments((current) => [created, ...current]);
+      }
     } finally {
       setBusy(false);
     }

@@ -21,7 +21,7 @@ services:
 
   ai-service:
     image: ${AI_SERVICE_IMAGE:-ghcr.io/ymomo178/bio-rag-ai-service:latest}
-    pull_policy: always
+    pull_policy: missing
     restart: unless-stopped
     init: true
     shm_size: "2gb"
@@ -71,7 +71,7 @@ services:
 
   backend-java:
     image: ${BACKEND_IMAGE:-ghcr.io/ymomo178/bio-rag-backend-java:latest}
-    pull_policy: always
+    pull_policy: missing
     restart: unless-stopped
     environment:
       SPRING_PROFILES_ACTIVE: docker
@@ -104,7 +104,7 @@ services:
 
   web:
     image: ${WEB_IMAGE:-ghcr.io/ymomo178/bio-rag-web:latest}
-    pull_policy: always
+    pull_policy: missing
     restart: unless-stopped
     ports:
       - "${WEB_PORT:-5173}:80"
